@@ -20,6 +20,7 @@ When implementing from a selected generated mock, treat that image as the source
 - In the cart sheet, keep product rows inset from both rounded screen edges, keep quantity controls fully visible inside the right edge, use a comfortably visible remove icon, and keep the total/checkout footer above the iOS home-indicator safe area.
 - Use a conversation-bubble icon for `茶会` in both the browser preview and native mini-program tab bar.
 - The `千岁红千年野生古树晒红` product opens a dedicated detail screen. Its selected visual target uses a full-bleed deep-forest hero with the clay-red tea tin, an ivory paper content field, origin facts (`临沧 / 大理种 / 海拔约 2000m / 树龄 1000 多年`), real article imagery, and a fixed purchase bar. Preserve this direction when extending the product story.
+- On the 千岁红 purchase bar, the compact secondary action is `收藏`, persisted into `我的收藏`; the primary `加入茶席` action uses restrained success motion and always exposes the current cart item count after adding.
 
 ## Editing Boundary
 

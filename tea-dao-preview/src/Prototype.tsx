@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BackpackIcon,
   ChatBubbleIcon,
@@ -263,7 +263,35 @@ function HomeScreen({ onTab, onMember, onAction }: { onTab: (tab: TabId) => void
 
 const qiansuihongName = "千岁红千年野生古树晒红";
 
-function QiansuihongDetail({ onBack, onAdd, onAction }: { onBack: () => void; onAdd: () => void; onAction: (title: string) => void }) {
+function QiansuihongDetail({
+  onBack,
+  onAdd,
+  onAction,
+  favorite,
+  onToggleFavorite,
+  cartCount,
+}: {
+  onBack: () => void;
+  onAdd: () => number;
+  onAction: (title: string) => void;
+  favorite: boolean;
+  onToggleFavorite: () => void;
+  cartCount: number;
+}) {
+  const [feedbackCount, setFeedbackCount] = useState<number | null>(null);
+  const feedbackTimer = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (feedbackTimer.current) window.clearTimeout(feedbackTimer.current);
+  }, []);
+
+  const addWithFeedback = () => {
+    const nextCount = onAdd();
+    setFeedbackCount(nextCount);
+    if (feedbackTimer.current) window.clearTimeout(feedbackTimer.current);
+    feedbackTimer.current = window.setTimeout(() => setFeedbackCount(null), 1800);
+  };
+
   return (
     <section className="qiansui-detail" data-testid="qiansuihong-detail">
       <MobileScroll className="qiansui-scroll">
@@ -344,16 +372,19 @@ function QiansuihongDetail({ onBack, onAdd, onAction }: { onBack: () => void; on
         </main>
       </MobileScroll>
 
-      <footer className="qiansui-buybar">
+      <div className="qiansui-added-toast" data-visible={feedbackCount !== null} role="status" aria-live="polite">
+        {feedbackCount !== null ? `已加入茶席 · 共 ${feedbackCount} 件茶品` : ""}
+      </div>
+      <footer className="qiansui-buybar" data-added={feedbackCount !== null}>
         <div><small>100g / 罐</small><strong>¥698</strong></div>
-        <button className="qiansui-cart-icon" type="button" aria-label="加入茶篮" onClick={onAdd}><BackpackIcon /></button>
-        <button className="qiansui-add" type="button" onClick={onAdd}>加入茶席</button>
+        <button className="qiansui-favorite" type="button" aria-pressed={favorite} data-active={favorite} onClick={onToggleFavorite}>{favorite ? "已收藏" : "收藏"}</button>
+        <button className="qiansui-add" type="button" onClick={addWithFeedback}>加入茶席{cartCount ? <small> · {cartCount}件</small> : null}</button>
       </footer>
     </section>
   );
 }
 
-function ShopScreen({ onAction }: { onAction: (title: string) => void }) {
+function ShopScreen({ onAction, favoriteNames, onToggleFavorite }: { onAction: (title: string) => void; favoriteNames: string[]; onToggleFavorite: (name: string) => void }) {
   const [category, setCategory] = useState(teaCatalog[0].name);
   const [cartItems, setCartItems] = useState<CartLine[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -412,7 +443,20 @@ function ShopScreen({ onAction }: { onAction: (title: string) => void }) {
   };
 
   if (detailProduct) {
-    return <QiansuihongDetail onBack={() => setDetailProduct(null)} onAdd={() => addToCart(detailProduct)} onAction={onAction} />;
+    return (
+      <QiansuihongDetail
+        onBack={() => setDetailProduct(null)}
+        onAdd={() => {
+          const nextCount = cartCount + 1;
+          addToCart(detailProduct);
+          return nextCount;
+        }}
+        onAction={onAction}
+        favorite={favoriteNames.includes(detailProduct.name)}
+        onToggleFavorite={() => onToggleFavorite(detailProduct.name)}
+        cartCount={cartCount}
+      />
+    );
   }
 
   return (
@@ -522,7 +566,9 @@ function LiveScreen({ onAction }: { onAction: (title: string) => void }) {
   );
 }
 
-function MeScreen({ onAction }: { onAction: (title: string) => void }) {
+function MeScreen({ onAction, favorites }: { onAction: (title: string) => void; favorites: TeaProduct[] }) {
+  const [favoritesOpen, setFavoritesOpen] = useState(true);
+
   return (
     <MobileScroll className="app-scroll">
       <main className="sub-screen me-screen" data-testid="me-screen">
@@ -535,7 +581,21 @@ function MeScreen({ onAction }: { onAction: (title: string) => void }) {
           <button type="button" onClick={() => onAction("优惠券") }><strong>5</strong><span>优惠券</span></button>
         </div>
         <section className="menu-list">
-          {["我的拼团", "我的收藏", "产品溯源记录", "跨境物流", "会员权益说明"].map((item) => (
+          <button type="button" onClick={() => onAction("我的拼团")}><span>我的拼团</span><ChevronRightIcon /></button>
+          <button className="favorites-toggle" type="button" aria-expanded={favoritesOpen} onClick={() => setFavoritesOpen((open) => !open)}>
+            <span>我的收藏</span><span className="favorites-count">{favorites.length} 件</span><ChevronRightIcon />
+          </button>
+          {favoritesOpen ? (
+            <div className="favorites-panel" data-testid="favorites-panel">
+              {favorites.length ? favorites.map((product) => (
+                <article className="favorite-product" key={product.name}>
+                  <img src={product.image} alt={product.name} />
+                  <div><span>WILD TREE RED TEA</span><h3>{product.name}</h3><small>{product.size}</small><strong>¥{product.price}</strong></div>
+                </article>
+              )) : <p className="favorites-empty">收藏喜欢的茶，下一次更快找到它。</p>}
+            </div>
+          ) : null}
+          {["产品溯源记录", "跨境物流", "会员权益说明"].map((item) => (
             <button key={item} type="button" onClick={() => onAction(item)}><span>{item}</span><ChevronRightIcon /></button>
           ))}
         </section>
@@ -547,13 +607,35 @@ function MeScreen({ onAction }: { onAction: (title: string) => void }) {
 export default function Prototype() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
   const [sheet, setSheet] = useState<string | null>(null);
+  const [favoriteNames, setFavoriteNames] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = JSON.parse(window.localStorage.getItem("yuTeaFavorites") ?? "[]");
+      return Array.isArray(saved) ? saved.filter((name): name is string => typeof name === "string") : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("yuTeaFavorites", JSON.stringify(favoriteNames));
+  }, [favoriteNames]);
+
+  const toggleFavorite = (name: string) => {
+    setFavoriteNames((names) => names.includes(name) ? names.filter((item) => item !== name) : [...names, name]);
+  };
+
+  const favoriteProducts = useMemo(
+    () => teaCatalog.flatMap((group) => group.products).filter((product) => favoriteNames.includes(product.name)),
+    [favoriteNames],
+  );
 
   const screen = useMemo(() => {
-    if (activeTab === "shop") return <ShopScreen onAction={setSheet} />;
+    if (activeTab === "shop") return <ShopScreen onAction={setSheet} favoriteNames={favoriteNames} onToggleFavorite={toggleFavorite} />;
     if (activeTab === "live") return <LiveScreen onAction={setSheet} />;
-    if (activeTab === "me") return <MeScreen onAction={setSheet} />;
+    if (activeTab === "me") return <MeScreen onAction={setSheet} favorites={favoriteProducts} />;
     return <HomeScreen onTab={setActiveTab} onMember={() => setSheet("欢迎加入山席会员")} onAction={setSheet} />;
-  }, [activeTab]);
+  }, [activeTab, favoriteNames, favoriteProducts]);
 
   return (
     <div className="tea-app" data-testid="tea-app">

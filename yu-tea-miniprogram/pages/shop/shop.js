@@ -78,6 +78,10 @@ Page({
     cartTotal: 0,
     cartOpen: false
   },
+  onShow() {
+    const cartItems = wx.getStorageSync("yuTeaCartItems") || [];
+    this.updateCart(cartItems);
+  },
   selectCategory(event) {
     const index = Number(event.currentTarget.dataset.index);
     const group = categories[index];
@@ -131,6 +135,7 @@ Page({
   updateCart(cartItems) {
     const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     const cartTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    wx.setStorageSync("yuTeaCartItems", cartItems);
     this.setData({ cartItems, cartCount, cartTotal, cartOpen: cartCount ? this.data.cartOpen : false });
   },
   checkout() {

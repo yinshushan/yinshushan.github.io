@@ -87,9 +87,10 @@
     </view>
   </scroll-view>
 
-  <view class="buybar">
+  <view class="add-feedback {{feedbackVisible ? 'is-visible' : ''}}">已加入茶席 · 共 {{cartCount}} 件茶品</view>
+  <view class="buybar {{feedbackVisible ? 'is-added' : ''}}">
     <view><text class="buy-size serif">100g / 罐</text><text class="buy-price">¥698</text></view>
-    <button class="buy-cart" bindtap="addToCart"><image src="/assets/icons/shop-active.png" mode="aspectFit" /></button>
-    <button class="buy-action serif" bindtap="addToCart">加入茶席</button>
+    <button class="buy-favorite {{favorite ? 'is-active' : ''}}" bindtap="toggleFavorite">{{favorite ? '已收藏' : '收藏'}}</button>
+    <button class="buy-action serif" bindtap="addToCart"><text>加入茶席</text><text wx:if="{{cartCount}}" class="buy-count"> · {{cartCount}}件</text></button>
   </view>
 </view>
