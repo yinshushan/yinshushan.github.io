@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BackpackIcon,
   ChatBubbleIcon,
+  CheckCircledIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   CircleIcon,
@@ -11,12 +12,14 @@ import {
   HomeIcon,
   IdCardIcon,
   LightningBoltIcon,
+  LockClosedIcon,
   MinusIcon,
   PersonIcon,
   PlusIcon,
   PlayIcon,
   RocketIcon,
   Share1Icon,
+  SewingPinIcon,
   StarIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -466,9 +469,22 @@ function QiansuihongDetail({
   );
 }
 
-function ShopScreen({ onAction, favoriteNames, onToggleFavorite }: { onAction: (title: string) => void; favoriteNames: string[]; onToggleFavorite: (name: string) => void }) {
+function ShopScreen({
+  onAction,
+  favoriteNames,
+  onToggleFavorite,
+  cartItems,
+  setCartItems,
+  onCheckout,
+}: {
+  onAction: (title: string) => void;
+  favoriteNames: string[];
+  onToggleFavorite: (name: string) => void;
+  cartItems: CartLine[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartLine[]>>;
+  onCheckout: () => void;
+}) {
   const [category, setCategory] = useState(teaCatalog[0].name);
-  const [cartItems, setCartItems] = useState<CartLine[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [detailProduct, setDetailProduct] = useState<TeaProduct | null>(null);
   const activeGroup = teaCatalog.find((group) => group.name === category) ?? teaCatalog[0];
@@ -513,7 +529,7 @@ function ShopScreen({ onAction, favoriteNames, onToggleFavorite }: { onAction: (
       return;
     }
     setCartOpen(false);
-    onAction(`去结算 · ¥${cartTotal}`);
+    onCheckout();
   };
 
   const openProduct = (product: TeaProduct) => {
@@ -631,6 +647,106 @@ function ShopScreen({ onAction, favoriteNames, onToggleFavorite }: { onAction: (
   );
 }
 
+function CheckoutScreen({
+  cartItems,
+  onBack,
+  onPaid,
+  onContinue,
+  onViewOrders,
+}: {
+  cartItems: CartLine[];
+  onBack: () => void;
+  onPaid: () => void;
+  onContinue: () => void;
+  onViewOrders: () => void;
+}) {
+  const [deliveryMode, setDeliveryMode] = useState<"domestic" | "cross">("domestic");
+  const [receipt, setReceipt] = useState<{ amount: number; count: number } | null>(null);
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const goodsTotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const couponDiscount = goodsTotal >= 199 ? 30 : 0;
+  const pointsDiscount = goodsTotal ? 8 : 0;
+  const shippingFee = deliveryMode === "cross" ? 48 : 0;
+  const payable = Math.max(0, goodsTotal + shippingFee - couponDiscount - pointsDiscount);
+
+  const pay = () => {
+    if (!cartCount) return;
+    setReceipt({ amount: payable, count: cartCount });
+    onPaid();
+  };
+
+  if (receipt) {
+    return (
+      <section className="checkout-layer checkout-success" data-testid="checkout-success">
+        <div className="checkout-success-mark"><CheckCircledIcon /></div>
+        <span>ORDER CONFIRMED</span>
+        <h1>这一席茶<br />已经为你留好</h1>
+        <p>订单已提交，我们会在发货后同步物流消息。<br />本次获得 {Math.floor(receipt.amount)} 茶分。</p>
+        <div className="checkout-order-no"><span>订单编号</span><strong>YU20260824{String(receipt.count).padStart(2, "0")}</strong></div>
+        <button className="checkout-success-primary" type="button" onClick={onViewOrders}>查看订单</button>
+        <button className="checkout-success-secondary" type="button" onClick={onContinue}>继续选茶</button>
+      </section>
+    );
+  }
+
+  return (
+    <section className="checkout-layer" data-testid="checkout-screen">
+      <header className="checkout-header">
+        <button type="button" aria-label="返回购物车" onClick={onBack}><ChevronLeftIcon /></button>
+        <div><span>CHECKOUT</span><h1>确认订单</h1></div>
+        <LockClosedIcon />
+      </header>
+
+      <MobileScroll className="checkout-scroll">
+        <main className="checkout-page">
+          <section className="checkout-address">
+            <SewingPinIcon />
+            <div><span>收货信息</span><strong>予茶会员 · 138****8899</strong><p>云南省昆明市盘龙区 · 微信地址示意</p></div>
+            <ChevronRightIcon />
+          </section>
+
+          <section className="checkout-delivery">
+            <div className="checkout-section-title"><span>DELIVERY</span><h2>配送方式</h2></div>
+            <div className="delivery-options">
+              <button type="button" data-active={deliveryMode === "domestic"} onClick={() => setDeliveryMode("domestic")}><strong>境内配送</strong><small>满 ¥199 包邮</small></button>
+              <button type="button" data-active={deliveryMode === "cross"} onClick={() => setDeliveryMode("cross")}><strong>跨境直邮</strong><small>运费 ¥48 · 税费以海关为准</small></button>
+            </div>
+          </section>
+
+          <section className="checkout-products">
+            <div className="checkout-section-title"><span>YOUR TEA</span><h2>{cartCount} 件茶品</h2></div>
+            {cartItems.map(({ product, quantity }) => (
+              <article key={product.name}>
+                <img src={product.image} alt={product.name} />
+                <div><h3>{product.name}</h3><small>{product.size} · ×{quantity}</small></div>
+                <strong>¥{product.price * quantity}</strong>
+              </article>
+            ))}
+          </section>
+
+          <section className="checkout-benefits">
+            <div><span>会员茶礼券</span><strong>{couponDiscount ? `−¥${couponDiscount}` : "暂无可用"}</strong></div>
+            <div><span>茶分抵扣</span><strong>{pointsDiscount ? `860 茶分 · −¥${pointsDiscount}` : "未使用"}</strong></div>
+            <div><span>支付方式</span><strong>微信支付 <ChevronRightIcon /></strong></div>
+          </section>
+
+          <section className="checkout-summary">
+            <div><span>商品金额</span><strong>¥{goodsTotal}</strong></div>
+            <div><span>优惠抵扣</span><strong>−¥{couponDiscount + pointsDiscount}</strong></div>
+            <div><span>配送费</span><strong>{shippingFee ? `¥${shippingFee}` : "包邮"}</strong></div>
+            <div className="checkout-summary-total"><span>应付金额</span><strong>¥{payable}</strong></div>
+          </section>
+        </main>
+      </MobileScroll>
+
+      <footer className="checkout-paybar">
+        <div><small>合计</small><strong>¥{payable}</strong></div>
+        <button type="button" onClick={pay}><LockClosedIcon />微信支付 · ¥{payable}</button>
+      </footer>
+    </section>
+  );
+}
+
 function LiveScreen({ onAction }: { onAction: (title: string) => void }) {
   return (
     <MobileScroll className="app-scroll">
@@ -694,7 +810,24 @@ function MeScreen({ onAction, favorites }: { onAction: (title: string) => void; 
 
 export default function Prototype() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [sheet, setSheet] = useState<string | null>(null);
+  const [cartItems, setCartItems] = useState<CartLine[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = JSON.parse(window.localStorage.getItem("yuTeaCartItems") ?? "[]");
+      if (!Array.isArray(saved)) return [];
+      const products = teaCatalog.flatMap((group) => group.products);
+      return saved.flatMap((line): CartLine[] => {
+        const name = typeof line?.name === "string" ? line.name : line?.product?.name;
+        const product = products.find((item) => item.name === name);
+        const quantity = Number(line?.quantity);
+        return product && Number.isFinite(quantity) && quantity > 0 ? [{ product, quantity }] : [];
+      });
+    } catch {
+      return [];
+    }
+  });
   const [favoriteNames, setFavoriteNames] = useState<string[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -709,6 +842,10 @@ export default function Prototype() {
     window.localStorage.setItem("yuTeaFavorites", JSON.stringify(favoriteNames));
   }, [favoriteNames]);
 
+  useEffect(() => {
+    window.localStorage.setItem("yuTeaCartItems", JSON.stringify(cartItems.map(({ product, quantity }) => ({ name: product.name, quantity }))));
+  }, [cartItems]);
+
   const toggleFavorite = (name: string) => {
     setFavoriteNames((names) => names.includes(name) ? names.filter((item) => item !== name) : [...names, name]);
   };
@@ -719,16 +856,25 @@ export default function Prototype() {
   );
 
   const screen = useMemo(() => {
-    if (activeTab === "shop") return <ShopScreen onAction={setSheet} favoriteNames={favoriteNames} onToggleFavorite={toggleFavorite} />;
+    if (checkoutOpen) return (
+      <CheckoutScreen
+        cartItems={cartItems}
+        onBack={() => setCheckoutOpen(false)}
+        onPaid={() => setCartItems([])}
+        onContinue={() => { setCheckoutOpen(false); setActiveTab("shop"); }}
+        onViewOrders={() => { setCheckoutOpen(false); setActiveTab("me"); setSheet("订单已提交"); }}
+      />
+    );
+    if (activeTab === "shop") return <ShopScreen onAction={setSheet} favoriteNames={favoriteNames} onToggleFavorite={toggleFavorite} cartItems={cartItems} setCartItems={setCartItems} onCheckout={() => setCheckoutOpen(true)} />;
     if (activeTab === "live") return <LiveScreen onAction={setSheet} />;
     if (activeTab === "me") return <MeScreen onAction={setSheet} favorites={favoriteProducts} />;
     return <HomeScreen onTab={setActiveTab} onMember={() => setSheet("欢迎加入山席会员")} onAction={setSheet} />;
-  }, [activeTab, favoriteNames, favoriteProducts]);
+  }, [activeTab, cartItems, checkoutOpen, favoriteNames, favoriteProducts]);
 
   return (
     <div className="tea-app" data-testid="tea-app">
       {screen}
-      <nav className="tab-bar" aria-label="主要导航">
+      {!checkoutOpen ? <nav className="tab-bar" aria-label="主要导航">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -737,7 +883,7 @@ export default function Prototype() {
             </button>
           );
         })}
-      </nav>
+      </nav> : null}
       <BottomSheet open={Boolean(sheet)} onOpenChange={(open) => !open && setSheet(null)} title={sheet ?? ""} description="演示交互已连接，正式上线时可接入微信会员、交易、直播与社群能力。">
         <div className="sheet-content">
           <p>{sheet === "欢迎加入山席会员" ? "新会员已领取 ¥30 茶礼券，并获得 100 茶分。" : "这个入口已经可以响应操作，可继续对接真实业务数据与微信生态能力。"}</p>

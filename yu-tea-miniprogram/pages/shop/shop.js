@@ -141,8 +141,12 @@ Page({
     this.setData({ cartItems, cartCount, cartTotal, cartOpen: cartCount ? this.data.cartOpen : false });
   },
   checkout() {
-    if (this.data.cartCount) this.setData({ cartOpen: false });
-    wx.showToast({ title: this.data.cartCount ? `合计 ¥${this.data.cartTotal}` : "请先选购茶品", icon: "none" });
+    if (!this.data.cartCount) {
+      wx.showToast({ title: "请先选购茶品", icon: "none" });
+      return;
+    }
+    this.setData({ cartOpen: false });
+    wx.navigateTo({ url: "/pages/checkout/checkout" });
   },
   showFeature(event) {
     wx.showToast({ title: event.currentTarget.dataset.name, icon: "none" });

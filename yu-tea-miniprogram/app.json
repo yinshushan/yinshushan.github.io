@@ -4,6 +4,7 @@
     "pages/shop/shop",
     "pages/product-qiansuihong/product-qiansuihong",
     "pages/product/product",
+    "pages/checkout/checkout",
     "pages/community/community",
     "pages/me/me"
   ],

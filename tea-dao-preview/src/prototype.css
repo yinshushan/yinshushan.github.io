@@ -327,6 +327,69 @@ button { color: inherit; }
 .cart-sheet-footer > button { height: 46px; border: 0; border-radius: 24px; background: var(--forest); color: #fff; font-size: 13px; font-weight: 650; }
 .cart-sheet-footer > button:disabled { background: #aeb3ae; }
 
+.checkout-layer { position: absolute; z-index: 50; inset: 0; overflow: hidden; background: #f3efe6; color: #17231e; }
+.device-screen:has(.checkout-layer) .keyboard-dock { visibility: hidden; }
+.checkout-header { position: absolute; z-index: 3; top: 0; right: 0; left: 0; display: grid; grid-template-columns: 38px 1fr 38px; height: 100px; align-items: end; gap: 12px; padding: 45px 18px 14px; border-bottom: 1px solid rgba(24,59,45,.08); background: rgba(250,248,242,.98); }
+.checkout-header > button { display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 1px solid rgba(24,59,45,.1); border-radius: 50%; background: #fff; color: var(--forest); }
+.checkout-header > button svg { width: 20px; height: 20px; }
+.checkout-header > div { text-align: center; }
+.checkout-header span { display: block; color: var(--moss); font: 600 7px/1 Georgia, serif; letter-spacing: .22em; }
+.checkout-header h1 { margin: 5px 0 0; color: var(--forest); font: 500 20px/1 "Songti SC", STSong, serif; letter-spacing: .08em; }
+.checkout-header > svg { align-self: center; justify-self: center; width: 18px; height: 18px; margin-top: 17px; color: var(--forest); }
+.checkout-scroll { position: absolute; top: 100px; right: 0; bottom: 86px; left: 0; background: #f3efe6; }
+.checkout-page { min-height: 100%; padding: 15px 15px 34px; }
+.checkout-address { display: grid; grid-template-columns: 34px 1fr 18px; align-items: center; gap: 11px; padding: 17px 15px; border: 1px solid rgba(24,59,45,.08); border-radius: 17px; background: #fffdf8; }
+.checkout-address > svg:first-child { width: 22px; height: 22px; color: var(--clay); }
+.checkout-address > svg:last-child { width: 16px; height: 16px; color: #9ba19c; }
+.checkout-address span, .checkout-address strong, .checkout-address p { display: block; }
+.checkout-address span { color: var(--moss); font-size: 8px; font-weight: 700; letter-spacing: .13em; }
+.checkout-address strong { margin-top: 7px; font-size: 12px; }
+.checkout-address p { margin: 5px 0 0; color: #7e857f; font-size: 9px; line-height: 1.45; }
+.checkout-delivery, .checkout-products, .checkout-benefits, .checkout-summary { margin-top: 12px; padding: 17px 15px; border: 1px solid rgba(24,59,45,.07); background: #fffdf8; }
+.checkout-delivery, .checkout-products { border-radius: 17px; }
+.checkout-benefits, .checkout-summary { border-radius: 14px; }
+.checkout-section-title > span { display: block; color: var(--clay); font: 600 7px/1 Georgia, serif; letter-spacing: .2em; }
+.checkout-section-title h2 { margin: 7px 0 0; color: var(--forest); font: 500 17px/1.2 "Songti SC", STSong, serif; }
+.delivery-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.delivery-options button { min-height: 58px; padding: 11px 10px; border: 1px solid rgba(24,59,45,.12); border-radius: 12px; background: #f7f5ef; color: #747c76; text-align: left; }
+.delivery-options button[data-active="true"] { border-color: var(--forest); background: #e8eee9; color: var(--forest); box-shadow: inset 0 0 0 1px rgba(24,59,45,.2); }
+.delivery-options strong, .delivery-options small { display: block; }
+.delivery-options strong { font-size: 11px; }
+.delivery-options small { margin-top: 6px; font-size: 7px; line-height: 1.4; }
+.checkout-products article { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 11px; min-height: 82px; padding: 11px 0; border-bottom: 1px solid var(--hairline); }
+.checkout-products article:last-child { padding-bottom: 0; border-bottom: 0; }
+.checkout-products img { width: 60px; height: 60px; border-radius: 50%; background: #efe7d9; object-fit: cover; }
+.checkout-products h3 { display: -webkit-box; overflow: hidden; margin: 0 0 7px; font-size: 12px; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.checkout-products small { color: #8c938d; font-size: 8px; }
+.checkout-products article > strong { color: var(--forest); font: 600 16px/1 Georgia, serif; }
+.checkout-benefits > div, .checkout-summary > div { display: flex; min-height: 38px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--hairline); }
+.checkout-benefits > div:last-child, .checkout-summary > div:last-child { border-bottom: 0; }
+.checkout-benefits span, .checkout-summary span { color: #69726b; font-size: 10px; }
+.checkout-benefits strong, .checkout-summary strong { display: flex; align-items: center; gap: 4px; color: var(--forest); font-size: 10px; }
+.checkout-benefits strong svg { width: 13px; height: 13px; }
+.checkout-summary-total { margin-top: 5px; padding-top: 7px; }
+.checkout-summary-total span { color: #17231e; font-weight: 650; }
+.checkout-summary-total strong { color: var(--forest); font: 600 22px/1 Georgia, serif; }
+.checkout-paybar { position: absolute; z-index: 4; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr 218px; height: 86px; align-items: start; gap: 12px; padding: 10px 13px calc(var(--mobile-safe-area-height) + 5px) 20px; border-top: 1px solid rgba(24,59,45,.1); background: rgba(255,253,248,.98); }
+.checkout-paybar small, .checkout-paybar strong { display: block; }
+.checkout-paybar small { color: #7f8781; font-size: 8px; }
+.checkout-paybar strong { margin-top: 3px; color: var(--forest); font: 600 23px/1 Georgia, serif; }
+.checkout-paybar button { display: flex; height: 48px; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; border: 0; border-radius: 25px; background: var(--forest); color: #fff; font-size: 12px; font-weight: 650; }
+.checkout-paybar button svg { width: 16px; height: 16px; }
+.checkout-success { display: flex; align-items: center; flex-direction: column; padding: 162px 36px 38px; background: var(--forest-deep); color: #f7f1e6; text-align: center; }
+.checkout-success-mark { display: grid; width: 72px; height: 72px; place-items: center; margin-bottom: 28px; border: 1px solid rgba(247,241,230,.35); border-radius: 50%; color: #d2b99f; }
+.checkout-success-mark svg { width: 38px; height: 38px; }
+.checkout-success > span { color: #c88f71; font: 600 8px/1 Georgia, serif; letter-spacing: .28em; }
+.checkout-success h1 { margin: 18px 0 16px; font: 400 31px/1.45 "Songti SC", STSong, serif; letter-spacing: .08em; }
+.checkout-success > p { margin: 0; color: rgba(247,241,230,.66); font-size: 10px; line-height: 1.9; }
+.checkout-order-no { width: 100%; margin: 36px 0 25px; padding: 15px 18px; border-top: 1px solid rgba(247,241,230,.12); border-bottom: 1px solid rgba(247,241,230,.12); }
+.checkout-order-no span, .checkout-order-no strong { display: block; }
+.checkout-order-no span { color: rgba(247,241,230,.52); font-size: 8px; }
+.checkout-order-no strong { margin-top: 8px; font: 500 13px/1 Georgia, serif; letter-spacing: .09em; }
+.checkout-success > button { width: 100%; height: 48px; border-radius: 25px; font-size: 12px; }
+.checkout-success-primary { border: 0; background: #f7f1e6; color: var(--forest-deep); font-weight: 650; }
+.checkout-success-secondary { margin-top: 10px; border: 1px solid rgba(247,241,230,.3); background: transparent; color: #f7f1e6; }
+
 .community-screen { background: #e9e4d9; }
 .live-hero { position: relative; min-height: 405px; overflow: hidden; background: var(--forest-deep); color: #fff; }
 .live-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .68; }

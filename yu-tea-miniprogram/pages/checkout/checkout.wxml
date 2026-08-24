@@ -1,0 +1,65 @@
+<view class="checkout-page">
+  <block wx:if="{{!paid}}">
+    <view class="checkout-header">
+      <button bindtap="goBack">返回</button>
+      <view><text>CHECKOUT</text><text class="header-title serif">确认订单</text></view>
+      <text class="secure-label">安全支付</text>
+    </view>
+
+    <scroll-view class="checkout-scroll" scroll-y enhanced show-scrollbar="false">
+      <view class="checkout-content">
+        <view class="address-card">
+          <view><text class="card-kicker">收货信息</text><text class="address-name">予茶会员 · 138****8899</text><text class="address-line">云南省昆明市盘龙区 · 微信地址示意</text></view>
+          <text class="address-action">修改</text>
+        </view>
+
+        <view class="checkout-card delivery-card">
+          <view class="section-heading"><text>DELIVERY</text><text class="section-title serif">配送方式</text></view>
+          <view class="delivery-options">
+            <button class="{{deliveryMode === 'domestic' ? 'active' : ''}}" data-mode="domestic" bindtap="selectDelivery"><text>境内配送</text><text>满 ¥199 包邮</text></button>
+            <button class="{{deliveryMode === 'cross' ? 'active' : ''}}" data-mode="cross" bindtap="selectDelivery"><text>跨境直邮</text><text>运费 ¥48 · 税费以海关为准</text></button>
+          </view>
+        </view>
+
+        <view class="checkout-card product-card">
+          <view class="section-heading"><text>YOUR TEA</text><text class="section-title serif">{{cartCount}} 件茶品</text></view>
+          <view class="checkout-item" wx:for="{{cartItems}}" wx:key="name">
+            <image src="{{item.image}}" mode="aspectFill" />
+            <view><text class="checkout-item-name">{{item.name}}</text><text class="checkout-item-size">{{item.size}} · ×{{item.quantity}}</text></view>
+            <text class="checkout-item-price">¥{{item.price * item.quantity}}</text>
+          </view>
+        </view>
+
+        <view class="checkout-card benefit-card">
+          <view><text>会员茶礼券</text><text>{{couponDiscount ? '−¥' + couponDiscount : '暂无可用'}}</text></view>
+          <view><text>茶分抵扣</text><text>{{pointsDiscount ? '860 茶分 · −¥' + pointsDiscount : '未使用'}}</text></view>
+          <view><text>支付方式</text><text>微信支付</text></view>
+        </view>
+
+        <view class="checkout-card summary-card">
+          <view><text>商品金额</text><text>¥{{goodsTotal}}</text></view>
+          <view><text>优惠抵扣</text><text>−¥{{couponDiscount + pointsDiscount}}</text></view>
+          <view><text>配送费</text><text>{{shippingFee ? '¥' + shippingFee : '包邮'}}</text></view>
+          <view class="summary-total"><text>应付金额</text><text>¥{{payable}}</text></view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="checkout-paybar">
+      <view><text>合计</text><text>¥{{payable}}</text></view>
+      <button bindtap="pay">微信支付 · ¥{{payable}}</button>
+    </view>
+  </block>
+
+  <view wx:else class="checkout-success">
+    <view class="success-mark">予</view>
+    <text class="success-kicker">ORDER CONFIRMED</text>
+    <text class="success-title serif">这一席茶
+已经为你留好</text>
+    <text class="success-copy">订单已提交，我们会在发货后同步物流消息。
+本次获得 {{payable}} 茶分。</text>
+    <view class="order-no"><text>订单编号</text><text>{{orderNo}}</text></view>
+    <button class="success-primary" bindtap="viewOrders">查看订单</button>
+    <button class="success-secondary" bindtap="continueTea">继续选茶</button>
+  </view>
+</view>
