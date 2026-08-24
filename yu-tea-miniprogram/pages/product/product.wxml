@@ -1,0 +1,45 @@
+<view class="product-detail-page">
+  <scroll-view class="detail-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="detail-content">
+      <view class="detail-header">
+        <button bindtap="goBack">返回</button>
+        <text>YU TEA · SELECTED</text>
+        <button open-type="share">分享</button>
+      </view>
+
+      <view class="product-hero">
+        <text class="product-kicker">{{product.subcategory}} · 予茶选品</text>
+        <view class="product-image-wrap"><image src="{{product.image}}" mode="aspectFill" /></view>
+        <text wx:if="{{product.tag}}" class="product-tag">{{product.tag}}</text>
+        <text class="product-name serif">{{product.name}}</text>
+        <text class="product-note serif">{{product.note}}</text>
+        <text class="product-size">{{product.size}}</text>
+      </view>
+
+      <view class="profile-section">
+        <text class="section-kicker">TEA PROFILE · 风味轮廓</text>
+        <text class="section-title serif">一席茶里的
+本真风味</text>
+        <text class="section-copy">{{product.note}}。以清透的香气、温润的汤感与细长回味，呈现予茶对每一片原叶的认真选择。</text>
+      </view>
+
+      <view class="info-section">
+        <view><text>01</text><view><text class="info-title serif">建议冲泡</text><text class="info-copy">使用洁净热水温润茶具，少量多次出汤，根据个人口味调整浸泡时间。</text></view></view>
+        <view><text>02</text><view><text class="info-title serif">安心溯源</text><text class="info-copy">正式商品可接入批次溯源码，查看产地、采摘与加工信息。</text></view></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="add-feedback {{feedbackVisible ? 'is-visible' : ''}}">已加入购物车 · 共 {{cartCount}} 件茶品</view>
+  <view class="detail-buybar {{feedbackVisible ? 'is-added' : ''}}">
+    <view class="detail-price"><text>{{product.size}}</text><text>¥{{product.price}}</text></view>
+    <button class="favorite-button {{favorite ? 'is-active' : ''}}" bindtap="toggleFavorite"><image src="{{favorite ? '/assets/icons/star-active.png' : '/assets/icons/star.png'}}" mode="aspectFit" /><text>{{favorite ? '已收藏' : '收藏'}}</text></button>
+    <button class="cart-button" bindtap="addToCart"><image src="/assets/icons/shop-active.png" mode="aspectFit" /><view><text>加入购物车</text><text>{{cartCount ? '共 ' + cartCount + ' 件' : '加入茶席'}}</text></view></button>
+  </view>
+  <view class="detail-tabbar" aria-label="主要导航">
+    <button data-url="/pages/home/home" bindtap="switchTab"><image src="/assets/icons/home.png" mode="aspectFit" /><text>首页</text></button>
+    <button class="is-active" data-url="/pages/shop/shop" bindtap="switchTab"><image src="/assets/icons/shop-active.png" mode="aspectFit" /><text>选茶</text></button>
+    <button data-url="/pages/community/community" bindtap="switchTab"><image src="/assets/icons/community.png" mode="aspectFit" /><text>茶会</text></button>
+    <button data-url="/pages/me/me" bindtap="switchTab"><image src="/assets/icons/me.png" mode="aspectFit" /><text>我的</text></button>
+  </view>
+</view>

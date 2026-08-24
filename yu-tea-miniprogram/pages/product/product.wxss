@@ -1,0 +1,50 @@
+page { height: 100%; overflow: hidden; background: #f5f1e8; color: #17231e; font-family: "PingFang SC", sans-serif; }
+button::after { border: 0; }
+.serif { font-family: "Songti SC", STSong, serif; }
+.product-detail-page { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f5f1e8; }
+.detail-scroll { width: 100%; height: 100%; }
+.detail-content { min-height: 100%; padding-bottom: calc(350rpx + env(safe-area-inset-bottom)); }
+.detail-header { position: absolute; z-index: 4; top: 0; right: 0; left: 0; display: grid; grid-template-columns: 96rpx 1fr 96rpx; align-items: center; gap: 24rpx; padding: calc(42rpx + env(safe-area-inset-top)) 36rpx 20rpx; box-sizing: border-box; color: #183b2d; }
+.detail-header button { width: 96rpx; height: 64rpx; margin: 0; padding: 0; border: 1rpx solid rgba(24,59,45,.1); border-radius: 34rpx; background: rgba(255,255,255,.72); color: #183b2d; font-size: 22rpx; line-height: 64rpx; }
+.detail-header > text { overflow: hidden; font-family: Georgia, serif; font-size: 16rpx; font-weight: 600; letter-spacing: 4rpx; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.product-hero { min-height: 1116rpx; padding: calc(196rpx + env(safe-area-inset-top)) 52rpx 68rpx; box-sizing: border-box; text-align: center; }
+.product-kicker { display: block; color: #6e846f; font-size: 18rpx; font-weight: 700; letter-spacing: 4rpx; }
+.product-image-wrap { display: flex; align-items: center; justify-content: center; width: 476rpx; height: 476rpx; margin: 48rpx auto 40rpx; border-radius: 50%; background: #eae1d2; box-shadow: 0 36rpx 88rpx rgba(55,44,29,.1); }
+.product-image-wrap image { width: 436rpx; height: 436rpx; border-radius: 50%; }
+.product-tag { display: inline-block; padding: 6rpx 16rpx; border-radius: 24rpx; background: #183b2d; color: #fff; font-size: 16rpx; }
+.product-name, .product-note, .product-size { display: block; }
+.product-name { margin: 24rpx auto 14rpx; color: #183b2d; font-size: 54rpx; line-height: 1.35; letter-spacing: 2rpx; }
+.product-note { color: #657068; font-size: 26rpx; line-height: 1.65; letter-spacing: 3rpx; }
+.product-size { margin-top: 20rpx; color: #939991; font-size: 20rpx; }
+.profile-section { padding: 84rpx 56rpx 92rpx; background: #0d2b21; color: #f6f0e4; }
+.section-kicker { display: block; color: #c58a6d; font-size: 16rpx; font-weight: 700; letter-spacing: 4rpx; }
+.section-title { display: block; margin: 24rpx 0 34rpx; font-size: 58rpx; line-height: 1.4; white-space: pre-line; }
+.section-copy { display: block; color: rgba(246,240,228,.7); font-size: 22rpx; line-height: 1.95; }
+.info-section { padding: 28rpx 48rpx 84rpx; background: #fffaf1; }
+.info-section > view { display: grid; grid-template-columns: 84rpx 1fr; gap: 30rpx; padding: 50rpx 0; border-bottom: 1rpx solid rgba(24,59,45,.1); }
+.info-section > view > text { color: #b36e4b; font: 500 36rpx/1 Georgia, serif; }
+.info-title, .info-copy { display: block; }
+.info-title { margin-bottom: 14rpx; color: #183b2d; font-size: 32rpx; font-weight: 600; }
+.info-copy { color: #707971; font-size: 20rpx; line-height: 1.8; }
+.add-feedback { position: absolute; z-index: 9; right: 76rpx; bottom: calc(env(safe-area-inset-bottom) + 302rpx); left: 76rpx; padding: 20rpx 28rpx; border-radius: 48rpx; background: rgba(13,43,33,.94); color: #fffaf1; font-size: 20rpx; font-weight: 600; letter-spacing: 2rpx; text-align: center; opacity: 0; pointer-events: none; transform: translateY(24rpx) scale(.96); }
+.add-feedback.is-visible { animation: add-toast 1.8s ease both; }
+.detail-buybar { position: absolute; z-index: 8; right: 24rpx; bottom: calc(env(safe-area-inset-bottom) + 138rpx); left: 24rpx; display: grid; grid-template-columns: minmax(0,1fr) 124rpx 264rpx; height: 132rpx; align-items: center; gap: 14rpx; padding: 12rpx 14rpx 12rpx 32rpx; box-sizing: border-box; border: 1rpx solid rgba(24,59,45,.1); border-radius: 68rpx; background: rgba(255,255,255,.98); box-shadow: 0 20rpx 60rpx rgba(13,43,33,.17); }
+.detail-price text { display: block; }
+.detail-price text:first-child { overflow: hidden; color: #7a837c; font-size: 18rpx; text-overflow: ellipsis; white-space: nowrap; }
+.detail-price text:last-child { margin-top: 6rpx; color: #183b2d; font: 600 46rpx/1 Georgia, serif; }
+.favorite-button { display: flex; align-items: center; justify-content: center; flex-direction: column; width: 124rpx; height: 104rpx; gap: 4rpx; margin: 0; padding: 0; border: 1rpx solid rgba(24,59,45,.12); border-radius: 52rpx; background: #efeee8; color: #183b2d; line-height: 1; }
+.favorite-button image { width: 34rpx; height: 34rpx; }
+.favorite-button text { font-size: 16rpx; }
+.favorite-button.is-active { background: #8b5540; color: #fffaf1; }
+.cart-button { display: flex; align-items: center; justify-content: center; height: 108rpx; gap: 18rpx; margin: 0; padding: 0 24rpx; border-radius: 56rpx; background: #183b2d; color: #fff; text-align: left; line-height: 1.2; }
+.cart-button image { width: 40rpx; height: 40rpx; filter: brightness(0) invert(1); }
+.cart-button view text { display: block; }
+.cart-button view text:first-child { font-size: 24rpx; }
+.cart-button view text:last-child { margin-top: 6rpx; color: rgba(255,255,255,.7); font-size: 16rpx; }
+.detail-buybar.is-added .cart-button { animation: add-pulse .48s ease-out; }
+.detail-tabbar { position: absolute; z-index: 7; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(4,1fr); height: calc(122rpx + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); box-sizing: border-box; border-top: 1rpx solid rgba(24,59,45,.08); background: rgba(252,250,245,.98); }
+.detail-tabbar button { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6rpx; margin: 0; padding: 10rpx 0 4rpx; background: transparent; color: #929892; font-size: 20rpx; line-height: 1; }
+.detail-tabbar image { width: 44rpx; height: 44rpx; }
+.detail-tabbar .is-active { color: #183b2d; font-weight: 650; }
+@keyframes add-toast { 0% { opacity: 0; transform: translateY(24rpx) scale(.96); } 16%, 78% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-10rpx) scale(.98); } }
+@keyframes add-pulse { 0% { transform: scale(1); } 45% { transform: scale(.95); } 100% { transform: scale(1); } }

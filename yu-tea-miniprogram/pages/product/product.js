@@ -1,28 +1,31 @@
-const product = {
-  name: "千岁红千年野生古树晒红",
-  note: "陈甜深邃，余韵悠长",
-  size: "100g / 罐",
-  price: 698,
-  image: "/assets/images/products/red-tin.png",
-  subcategory: "野生晒红"
-};
-
 Page({
   data: {
+    product: {},
     favorite: false,
     cartCount: 0,
     feedbackVisible: false
   },
+  onLoad(options) {
+    try {
+      const product = JSON.parse(decodeURIComponent(options.data || ""));
+      this.setData({ product }, () => this.refreshState());
+    } catch (error) {
+      wx.showToast({ title: "商品信息加载失败", icon: "none" });
+    }
+  },
   onShow() {
-    const favorites = wx.getStorageSync("yuTeaFavorites") || [];
-    const cartItems = wx.getStorageSync("yuTeaCartItems") || [];
-    this.setData({
-      favorite: favorites.some((item) => item.name === product.name),
-      cartCount: cartItems.reduce((sum, item) => sum + item.quantity, 0)
-    });
+    if (this.data.product.name) this.refreshState();
   },
   onUnload() {
     if (this.feedbackTimer) clearTimeout(this.feedbackTimer);
+  },
+  refreshState() {
+    const favorites = wx.getStorageSync("yuTeaFavorites") || [];
+    const cartItems = wx.getStorageSync("yuTeaCartItems") || [];
+    this.setData({
+      favorite: favorites.some((item) => item.name === this.data.product.name),
+      cartCount: cartItems.reduce((sum, item) => sum + item.quantity, 0)
+    });
   },
   goBack() {
     wx.navigateBack();
@@ -31,6 +34,7 @@ Page({
     wx.switchTab({ url: event.currentTarget.dataset.url });
   },
   toggleFavorite() {
+    const product = this.data.product;
     const favorites = wx.getStorageSync("yuTeaFavorites") || [];
     const favorite = !favorites.some((item) => item.name === product.name);
     const nextFavorites = favorite
@@ -38,9 +42,9 @@ Page({
       : favorites.filter((item) => item.name !== product.name);
     wx.setStorageSync("yuTeaFavorites", nextFavorites);
     this.setData({ favorite });
-    wx.showToast({ title: favorite ? "已收藏" : "已取消收藏", icon: "none" });
   },
   addToCart() {
+    const product = this.data.product;
     const cartItems = wx.getStorageSync("yuTeaCartItems") || [];
     const existing = cartItems.find((item) => item.name === product.name);
     const nextItems = existing
@@ -56,8 +60,8 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: "千岁红｜千年野生古树红茶",
-      path: "/pages/product-qiansuihong/product-qiansuihong"
+      title: `${this.data.product.name}｜予茶选品`,
+      path: `/pages/product/product?data=${encodeURIComponent(JSON.stringify(this.data.product))}`
     };
   }
 });

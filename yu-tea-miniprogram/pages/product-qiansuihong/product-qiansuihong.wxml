@@ -87,10 +87,16 @@
     </view>
   </scroll-view>
 
-  <view class="add-feedback {{feedbackVisible ? 'is-visible' : ''}}">已加入茶席 · 共 {{cartCount}} 件茶品</view>
+  <view class="add-feedback {{feedbackVisible ? 'is-visible' : ''}}">已加入购物车 · 共 {{cartCount}} 件茶品</view>
   <view class="buybar {{feedbackVisible ? 'is-added' : ''}}">
     <view><text class="buy-size serif">100g / 罐</text><text class="buy-price">¥698</text></view>
-    <button class="buy-favorite {{favorite ? 'is-active' : ''}}" bindtap="toggleFavorite">{{favorite ? '已收藏' : '收藏'}}</button>
-    <button class="buy-action serif" bindtap="addToCart"><text>加入茶席</text><text wx:if="{{cartCount}}" class="buy-count"> · {{cartCount}}件</text></button>
+    <button class="buy-favorite {{favorite ? 'is-active' : ''}}" bindtap="toggleFavorite"><image src="{{favorite ? '/assets/icons/star-active.png' : '/assets/icons/star.png'}}" mode="aspectFit" /><text>{{favorite ? '已收藏' : '收藏'}}</text></button>
+    <button class="buy-action" bindtap="addToCart"><image src="/assets/icons/shop-active.png" mode="aspectFit" /><view><text>加入购物车</text><text class="buy-count">{{cartCount ? '共 ' + cartCount + ' 件' : '加入茶席'}}</text></view></button>
+  </view>
+  <view class="detail-tabbar" aria-label="主要导航">
+    <button data-url="/pages/home/home" bindtap="switchTab"><image src="/assets/icons/home.png" mode="aspectFit" /><text>首页</text></button>
+    <button class="is-active" data-url="/pages/shop/shop" bindtap="switchTab"><image src="/assets/icons/shop-active.png" mode="aspectFit" /><text>选茶</text></button>
+    <button data-url="/pages/community/community" bindtap="switchTab"><image src="/assets/icons/community.png" mode="aspectFit" /><text>茶会</text></button>
+    <button data-url="/pages/me/me" bindtap="switchTab"><image src="/assets/icons/me.png" mode="aspectFit" /><text>我的</text></button>
   </view>
 </view>

@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/shop/shop",
     "pages/product-qiansuihong/product-qiansuihong",
+    "pages/product/product",
     "pages/community/community",
     "pages/me/me"
   ],

@@ -107,7 +107,9 @@ Page({
       wx.navigateTo({ url: "/pages/product-qiansuihong/product-qiansuihong" });
       return;
     }
-    wx.showToast({ title: product ? product.name : "茶品详情", icon: "none" });
+    if (product) {
+      wx.navigateTo({ url: `/pages/product/product?data=${encodeURIComponent(JSON.stringify(product))}` });
+    }
   },
   viewCart() {
     if (!this.data.cartCount) {

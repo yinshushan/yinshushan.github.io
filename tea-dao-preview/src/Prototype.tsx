@@ -263,19 +263,17 @@ function HomeScreen({ onTab, onMember, onAction }: { onTab: (tab: TabId) => void
 
 const qiansuihongName = "千岁红千年野生古树晒红";
 
-function QiansuihongDetail({
-  onBack,
-  onAdd,
-  onAction,
+function DetailActionBar({
+  product,
   favorite,
   onToggleFavorite,
+  onAdd,
   cartCount,
 }: {
-  onBack: () => void;
-  onAdd: () => number;
-  onAction: (title: string) => void;
+  product: TeaProduct;
   favorite: boolean;
   onToggleFavorite: () => void;
+  onAdd: () => number;
   cartCount: number;
 }) {
   const [feedbackCount, setFeedbackCount] = useState<number | null>(null);
@@ -293,7 +291,98 @@ function QiansuihongDetail({
   };
 
   return (
-    <section className="qiansui-detail" data-testid="qiansuihong-detail">
+    <>
+      <div className="detail-added-toast" data-visible={feedbackCount !== null} role="status" aria-live="polite">
+        {feedbackCount !== null ? `已加入购物车 · 共 ${feedbackCount} 件茶品` : ""}
+      </div>
+      <footer className="detail-buybar" data-added={feedbackCount !== null}>
+        <div className="detail-price"><small>{product.size}</small><strong>¥{product.price}</strong></div>
+        <button className="detail-favorite" type="button" aria-label={`${favorite ? "取消收藏" : "收藏"}${product.name}`} aria-pressed={favorite} data-active={favorite} onClick={onToggleFavorite}>
+          <StarIcon /><span>{favorite ? "已收藏" : "收藏"}</span>
+        </button>
+        <button className="detail-cart" type="button" aria-label={`将${product.name}加入购物车`} onClick={addWithFeedback}>
+          <BackpackIcon /><span>加入购物车<small>{cartCount ? `共 ${cartCount} 件` : "加入茶席"}</small></span>
+        </button>
+      </footer>
+    </>
+  );
+}
+
+function StandardProductDetail({
+  product,
+  group,
+  onBack,
+  onAdd,
+  onAction,
+  favorite,
+  onToggleFavorite,
+  cartCount,
+}: {
+  product: TeaProduct;
+  group: TeaGroup;
+  onBack: () => void;
+  onAdd: () => number;
+  onAction: (title: string) => void;
+  favorite: boolean;
+  onToggleFavorite: () => void;
+  cartCount: number;
+}) {
+  return (
+    <section className="standard-detail detail-layer" data-testid="product-detail" data-product-name={product.name}>
+      <MobileScroll className="standard-detail-scroll">
+        <main className="standard-detail-page">
+          <header className="standard-detail-header">
+            <button type="button" aria-label="返回选茶" onClick={onBack}><ChevronLeftIcon /></button>
+            <span>YU TEA · SELECTED {group.name.toUpperCase()}</span>
+            <button type="button" aria-label={`分享${product.name}`} onClick={() => onAction(`分享${product.name}`)}><Share1Icon /></button>
+          </header>
+
+          <section className="standard-product-hero">
+            <span className="standard-detail-kicker">{product.subcategory} · {group.name}</span>
+            <div className="standard-product-image"><img src={product.image} alt={product.name} /></div>
+            {product.tag ? <span className="standard-product-tag">{product.tag}</span> : null}
+            <h1>{product.name}</h1>
+            <p>{product.note}</p>
+            <small>{product.size}</small>
+          </section>
+
+          <section className="standard-detail-story">
+            <span>TEA PROFILE · 风味轮廓</span>
+            <h2>一席茶里的<br />本真风味</h2>
+            <p>{product.note}。以清透的香气、温润的汤感与细长回味，呈现予茶对每一片原叶的认真选择。</p>
+          </section>
+
+          <section className="standard-detail-info">
+            <article><span>01</span><div><h3>建议冲泡</h3><p>使用洁净热水温润茶具，少量多次出汤，根据个人口味调整浸泡时间。</p></div></article>
+            <article><span>02</span><div><h3>安心溯源</h3><p>正式商品可接入批次溯源码，查看产地、采摘与加工信息。</p></div></article>
+          </section>
+        </main>
+      </MobileScroll>
+
+      <DetailActionBar product={product} favorite={favorite} onToggleFavorite={onToggleFavorite} onAdd={onAdd} cartCount={cartCount} />
+    </section>
+  );
+}
+
+function QiansuihongDetail({
+  product,
+  onBack,
+  onAdd,
+  onAction,
+  favorite,
+  onToggleFavorite,
+  cartCount,
+}: {
+  product: TeaProduct;
+  onBack: () => void;
+  onAdd: () => number;
+  onAction: (title: string) => void;
+  favorite: boolean;
+  onToggleFavorite: () => void;
+  cartCount: number;
+}) {
+  return (
+    <section className="qiansui-detail detail-layer" data-testid="qiansuihong-detail">
       <MobileScroll className="qiansui-scroll">
         <main className="qiansui-page">
           <section className="qiansui-hero" aria-label="千岁红千年野生古树红茶">
@@ -372,14 +461,7 @@ function QiansuihongDetail({
         </main>
       </MobileScroll>
 
-      <div className="qiansui-added-toast" data-visible={feedbackCount !== null} role="status" aria-live="polite">
-        {feedbackCount !== null ? `已加入茶席 · 共 ${feedbackCount} 件茶品` : ""}
-      </div>
-      <footer className="qiansui-buybar" data-added={feedbackCount !== null}>
-        <div><small>100g / 罐</small><strong>¥698</strong></div>
-        <button className="qiansui-favorite" type="button" aria-pressed={favorite} data-active={favorite} onClick={onToggleFavorite}>{favorite ? "已收藏" : "收藏"}</button>
-        <button className="qiansui-add" type="button" onClick={addWithFeedback}>加入茶席{cartCount ? <small> · {cartCount}件</small> : null}</button>
-      </footer>
+      <DetailActionBar product={product} favorite={favorite} onToggleFavorite={onToggleFavorite} onAdd={onAdd} cartCount={cartCount} />
     </section>
   );
 }
@@ -435,26 +517,32 @@ function ShopScreen({ onAction, favoriteNames, onToggleFavorite }: { onAction: (
   };
 
   const openProduct = (product: TeaProduct) => {
-    if (product.name === qiansuihongName) {
-      setDetailProduct(product);
-      return;
-    }
-    onAction(product.name);
+    setDetailProduct(product);
   };
 
   if (detailProduct) {
+    const detailGroup = teaCatalog.find((group) => group.products.some((product) => product.name === detailProduct.name)) ?? activeGroup;
+    const detailProps = {
+      product: detailProduct,
+      onBack: () => setDetailProduct(null),
+      onAdd: () => {
+        const nextCount = cartCount + 1;
+        addToCart(detailProduct);
+        return nextCount;
+      },
+      onAction,
+      favorite: favoriteNames.includes(detailProduct.name),
+      onToggleFavorite: () => onToggleFavorite(detailProduct.name),
+      cartCount,
+    };
+
+    if (detailProduct.name !== qiansuihongName) {
+      return <StandardProductDetail {...detailProps} group={detailGroup} />;
+    }
+
     return (
       <QiansuihongDetail
-        onBack={() => setDetailProduct(null)}
-        onAdd={() => {
-          const nextCount = cartCount + 1;
-          addToCart(detailProduct);
-          return nextCount;
-        }}
-        onAction={onAction}
-        favorite={favoriteNames.includes(detailProduct.name)}
-        onToggleFavorite={() => onToggleFavorite(detailProduct.name)}
-        cartCount={cartCount}
+        {...detailProps}
       />
     );
   }
@@ -590,7 +678,7 @@ function MeScreen({ onAction, favorites }: { onAction: (title: string) => void; 
               {favorites.length ? favorites.map((product) => (
                 <article className="favorite-product" key={product.name}>
                   <img src={product.image} alt={product.name} />
-                  <div><span>WILD TREE RED TEA</span><h3>{product.name}</h3><small>{product.size}</small><strong>¥{product.price}</strong></div>
+                  <div><span>{teaCatalog.find((group) => group.products.some((item) => item.name === product.name))?.name ?? "予茶"} · YU TEA SELECTED</span><h3>{product.name}</h3><small>{product.size}</small><strong>¥{product.price}</strong></div>
                 </article>
               )) : <p className="favorites-empty">收藏喜欢的茶，下一次更快找到它。</p>}
             </div>

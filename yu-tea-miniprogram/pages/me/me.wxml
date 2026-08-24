@@ -8,7 +8,7 @@
     <block wx:if="{{favorites.length}}">
       <button wx:for="{{favorites}}" wx:key="name" class="favorite-card" data-name="{{item.name}}" bindtap="openFavorite">
         <image src="{{item.image}}" mode="aspectFill" />
-        <view><text class="favorite-kicker">WILD TREE RED TEA</text><text class="favorite-name serif">{{item.name}}</text><text class="favorite-size">{{item.size}}</text><text class="favorite-price">¥{{item.price}}</text></view>
+        <view><text class="favorite-kicker">YU TEA SELECTED</text><text class="favorite-name serif">{{item.name}}</text><text class="favorite-size">{{item.size}}</text><text class="favorite-price">¥{{item.price}}</text></view>
       </button>
     </block>
     <text wx:else class="favorites-empty">收藏喜欢的茶，下一次更快找到它。</text>

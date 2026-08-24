@@ -16,9 +16,13 @@ Page({
     });
   },
   openFavorite(event) {
-    if (event.currentTarget.dataset.name === "千岁红千年野生古树晒红") {
+    const product = this.data.favorites.find((item) => item.name === event.currentTarget.dataset.name);
+    if (!product) return;
+    if (product.name === "千岁红千年野生古树晒红") {
       wx.navigateTo({ url: "/pages/product-qiansuihong/product-qiansuihong" });
+      return;
     }
+    wx.navigateTo({ url: `/pages/product/product?data=${encodeURIComponent(JSON.stringify(product))}` });
   },
   showFeature(event) {
     wx.showToast({ title: event.currentTarget.dataset.name, icon: "none" });
