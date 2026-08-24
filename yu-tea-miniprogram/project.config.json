@@ -1,0 +1,26 @@
+{
+  "description": "予茶·数字化转型的新茶道",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "suffix",
+        "value": ".svg"
+      }
+    ]
+  },
+  "setting": {
+    "useCompilerPlugins": false,
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmManually": false,
+    "ignoreUploadUnusedFiles": true
+  },
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "yu-tea-miniprogram",
+  "miniprogramRoot": "./"
+}

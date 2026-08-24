@@ -1,0 +1,16 @@
+.DS_Store
+**/.DS_Store
+**/node_modules/
+**/dist/
+**/test-results/
+**/playwright-report/
+**/coverage/
+**/.env
+!**/.env.example
+*.log
+
+# Local design evidence and personal Codex resources are not needed by partners.
+codex-skills/
+tea-dao-preview/qa/
+tea-dao-preview/implementation-*.png
+

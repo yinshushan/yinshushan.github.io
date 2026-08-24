@@ -1,0 +1,16 @@
+{
+  "name": "yu-tea-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "予茶微信小程序零依赖后端与 API 合同",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "check": "node --check src/app.js && node --check src/config.js && node --check src/env.js && node --check src/openapi.js && node --check src/security.js && node --check src/seed.js && node --check src/server.js && node --check src/store.js && node --check examples/miniprogram-api.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

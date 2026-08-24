@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/shop/shop",
+    "pages/product-qiansuihong/product-qiansuihong",
+    "pages/community/community",
+    "pages/me/me"
+  ],
+  "window": {
+    "backgroundColor": "#f5f1e8",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#f5f1e8",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#929892",
+    "selectedColor": "#183b2d",
+    "backgroundColor": "#fcfaf5",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "选茶",
+        "iconPath": "assets/icons/shop.png",
+        "selectedIconPath": "assets/icons/shop-active.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "茶会",
+        "iconPath": "assets/icons/community.png",
+        "selectedIconPath": "assets/icons/community-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "assets/icons/me.png",
+        "selectedIconPath": "assets/icons/me-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

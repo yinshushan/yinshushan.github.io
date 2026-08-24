@@ -1,0 +1,12 @@
+<view class="community-page">
+  <text class="eyebrow">PRIVATE TEA COMMUNITY</text>
+  <view class="community-title serif"><text>把茶会</text><text>搬到云端</text></view>
+  <text class="intro">直播听茶、社群共学、公众号慢读，让每一次互动都成为长期关系。</text>
+  <view class="live-hero">
+    <image src="/assets/images/tea-origin-culture.png" mode="aspectFill" />
+    <text class="live-badge">● 直播预告</text>
+    <view class="live-copy"><text>今晚 20:00</text><view class="serif"><text>春茶为什么贵？</text><text>跟制茶师进一次茶山</text></view></view>
+    <button data-name="预约成功" bindtap="showFeature">预约提醒</button>
+  </view>
+  <view class="community-list"><text class="eyebrow">TOGETHER</text><text class="list-title serif">你的茶友圈</text><button data-name="已打开茶友群" bindtap="showFeature"><view><text>景迈山春茶共学群</text><text>286 位茶友正在讨论兰香</text></view><text>›</text></button><button data-name="已打开慢读" bindtap="showFeature"><view><text>本周慢读：茶与睡眠</text><text>品牌公众号精选 · 8 分钟</text></view><text>›</text></button></view>
+</view>

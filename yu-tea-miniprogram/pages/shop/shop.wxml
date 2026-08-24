@@ -1,0 +1,84 @@
+<view class="shop-page">
+  <view class="shop-header">
+    <view><text class="eyebrow">SELECTED TEA</text><text class="shop-title serif">予茶选品</text></view>
+    <button data-name="跨境直邮" bindtap="showFeature">跨境直邮</button>
+  </view>
+
+  <view class="category-rail">
+    <block wx:for="{{categories}}" wx:key="name">
+      <button class="category-primary {{index === activeCategoryIndex ? 'active' : ''}}" data-index="{{index}}" bindtap="selectCategory">{{item.name}}</button>
+    </block>
+  </view>
+
+  <scroll-view class="product-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="product-column">
+      <view class="catalog-heading">
+        <text class="catalog-category">{{activeCategory}}</text>
+        <text class="catalog-title serif">本类精选</text>
+        <text class="catalog-note">{{activeNote}}</text>
+      </view>
+      <view class="product-list">
+        <view class="catalog-product" wx:for="{{visibleProducts}}" wx:key="name" data-index="{{index}}" bindtap="openProduct">
+          <image src="{{item.image}}" mode="aspectFill" />
+          <view class="product-copy">
+            <text wx:if="{{item.tag}}" class="product-tag">{{item.tag}}</text>
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-note">{{item.note}}</text>
+            <text class="product-size">{{item.size}}</text>
+            <text class="product-price">¥{{item.price}}</text>
+          </view>
+          <button class="add-product" data-index="{{index}}" catchtap="addProduct"><image src="/assets/icons/plus.png" mode="aspectFit" /></button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="cart-bar {{cartCount === 0 ? 'empty' : ''}}">
+    <button class="cart-summary" bindtap="viewCart">
+      <view class="cart-icon"><image src="/assets/icons/shop-active.png" mode="aspectFit" /><text wx:if="{{cartCount}}">{{cartCount}}</text></view>
+      <view><text class="cart-total">¥{{cartTotal}}</text><text class="cart-note">{{cartCount ? '已选 ' + cartCount + ' 件茶品' : '请先选购茶品'}}</text></view>
+    </button>
+    <button class="checkout" bindtap="checkout">去结算</button>
+  </view>
+
+  <view wx:if="{{cartOpen}}" class="cart-mask" bindtap="closeCart">
+    <view class="cart-drawer" catchtap="stopPropagation">
+      <view class="cart-handle"></view>
+      <view class="cart-drawer-header">
+        <text class="cart-drawer-title serif">购物车 · {{cartCount}} 件茶品</text>
+        <text class="cart-drawer-description">已选商品可在这里调整数量</text>
+      </view>
+      <scroll-view class="cart-drawer-list" scroll-y enhanced show-scrollbar="false">
+        <view class="cart-drawer-item" wx:for="{{cartItems}}" wx:key="name">
+          <image class="cart-product-image" src="{{item.image}}" mode="aspectFill" />
+          <view class="cart-product-copy">
+            <text class="cart-product-name">{{item.name}}</text>
+            <text class="cart-product-size">{{item.size}}</text>
+            <text class="cart-product-price">¥{{item.price}}</text>
+          </view>
+          <view class="cart-drawer-actions">
+            <button class="cart-delete" aria-label="删除 {{item.name}}" data-name="{{item.name}}" bindtap="removeCartItem">
+              <image src="/assets/icons/trash.png" mode="aspectFit" />
+            </button>
+            <view class="cart-quantity">
+              <button aria-label="减少 {{item.name}} 数量" data-name="{{item.name}}" data-delta="-1" bindtap="changeCartQuantity">
+                <image src="/assets/icons/minus.png" mode="aspectFit" />
+              </button>
+              <text>{{item.quantity}}</text>
+              <button aria-label="增加 {{item.name}} 数量" data-name="{{item.name}}" data-delta="1" bindtap="changeCartQuantity">
+                <image src="/assets/icons/plus.png" mode="aspectFit" />
+              </button>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="cart-drawer-footer">
+        <view>
+          <text class="cart-drawer-total">¥{{cartTotal}}</text>
+          <text class="cart-drawer-count">共 {{cartCount}} 件茶品</text>
+        </view>
+        <button bindtap="checkout">去结算</button>
+      </view>
+    </view>
+  </view>
+</view>

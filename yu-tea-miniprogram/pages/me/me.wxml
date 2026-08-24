@@ -1,0 +1,7 @@
+<view class="me-page">
+  <text class="eyebrow">MY TEA LIFE</text>
+  <view class="profile"><text class="avatar serif">予</text><view><text class="profile-title serif">{{member ? '下午好，山席会员' : '下午好，茶友'}}</text><text class="profile-note">{{member ? '山席会员 · Lv.1' : '尚未入会'}}</text></view></view>
+  <view class="points-card"><view><text>可用茶分</text><text>{{points}}</text></view><button data-name="茶分兑礼" bindtap="showFeature">去兑礼</button></view>
+  <view class="order-strip"><button data-name="待付款" bindtap="showFeature"><text>1</text><text>待付款</text></button><button data-name="待收茶" bindtap="showFeature"><text>2</text><text>待收茶</text></button><button data-name="优惠券" bindtap="showFeature"><text>{{couponCount}}</text><text>优惠券</text></button></view>
+  <view class="menu-list"><button wx:for="{{menuItems}}" wx:key="*this" data-name="{{item}}" bindtap="showFeature"><text>{{item}}</text><text>›</text></button></view>
+</view>

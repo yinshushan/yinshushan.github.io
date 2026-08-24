@@ -1,0 +1,327 @@
+/* App-specific mobile UI. The device runtime remains in styles.css. */
+
+:root {
+  --ink: #17231e;
+  --forest: #183b2d;
+  --forest-deep: #0d2b21;
+  --moss: #6e846f;
+  --paper: #f5f1e8;
+  --paper-deep: #e9e0d0;
+  --clay: #b36e4b;
+  --hairline: rgba(23, 35, 30, 0.13);
+}
+
+button { color: inherit; }
+
+.tea-app {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "PingFang SC", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.app-scroll {
+  position: absolute;
+  inset: 0;
+  padding-bottom: 77px;
+  background: var(--paper);
+}
+
+.app-scroll > div:first-child { min-height: 100%; }
+.home-screen { min-height: 100%; padding-bottom: 96px; background: var(--paper); }
+
+.hero {
+  position: relative;
+  height: 100cqh;
+  min-height: 100cqh;
+  overflow: hidden;
+  background: var(--forest-deep);
+  color: #fff;
+}
+
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::before { content: ""; position: absolute; z-index: 1; inset: 0; background: rgba(7, 25, 18, 0.14); pointer-events: none; }
+.hero::after { content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: 44%; background: linear-gradient(to bottom, rgba(5, 16, 12, 0), rgba(5, 16, 12, .38)); pointer-events: none; }
+
+.hero-topline {
+  position: absolute;
+  z-index: 2;
+  top: 52px;
+  left: 22px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.22em;
+}
+
+.hero-topline .mini-capsule { display: flex; align-items: center; justify-content: space-evenly; width: 88px; height: 34px; padding: 0 7px; border: 1px solid rgba(255,255,255,.4); border-radius: 18px; background: rgba(12, 32, 24, .28); }
+.mini-capsule span { width: 1px; height: 18px; background: rgba(255,255,255,.35); }
+.hero-topline svg { width: 16px; height: 16px; }
+
+.hero-copy {
+  position: absolute;
+  z-index: 2;
+  top: 128px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0,0,0,.36);
+}
+
+.hero-mark { display: block; margin-bottom: 28px; font: 300 58px/1 "Songti SC", STSong, serif; letter-spacing: .08em; }
+.hero-copy p { margin: 0 0 12px; font: 400 13px/1.5 "Songti SC", STSong, serif; letter-spacing: .32em; }
+.hero-copy h1 { margin: 0; font: 400 31px/1.45 "Songti SC", STSong, serif; letter-spacing: .16em; }
+.hero-en { display: block; margin-top: 16px; font-size: 8px; letter-spacing: .28em; }
+.gateway { position: absolute; z-index: 3; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr 1px 1fr; align-items: stretch; min-height: 297px; background: linear-gradient(to bottom, rgba(3, 12, 9, 0), rgba(3, 12, 9, .94)); color: #fff; }
+.gateway button { display: flex; align-items: center; flex-direction: column; justify-content: flex-end; border: 0; background: transparent; padding: 78px 10px 104px; color: #fff; }
+.gateway-kicker, .eyebrow { display: block; color: var(--moss); font-size: 9px; font-weight: 700; letter-spacing: .17em; }
+.gateway .gateway-kicker { color: rgba(255,255,255,.72); }
+.gateway strong { margin: 8px 0 4px; font: 400 22px/1.2 "Songti SC", STSong, serif; }
+.gateway small { color: rgba(255,255,255,.7); font-size: 10px; }
+.gateway-rule { align-self: end; width: 1px; height: 64px; margin-bottom: 106px; background: rgba(255,255,255,.28); }
+
+.paper-section { padding: 34px 20px; }
+.section-heading { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
+.section-heading h2 { margin: 7px 0 0; font: 400 25px/1.3 "Songti SC", STSong, serif; }
+.text-action { display: flex; align-items: center; gap: 2px; padding: 4px 0; border: 0; background: transparent; color: #6f766f; font-size: 11px; }
+
+.quick-section { background: var(--paper); }
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.quick-grid button { display: grid; grid-template-columns: 38px 1fr; grid-template-rows: auto auto; column-gap: 10px; text-align: left; padding: 15px 12px; border: 1px solid rgba(24,59,45,.1); border-radius: 4px; background: rgba(255,255,255,.7); }
+.quick-icon { display: grid; grid-row: 1 / 3; width: 38px; height: 38px; place-items: center; border-radius: 50%; background: #e4eadf; color: var(--forest); }
+.quick-icon svg { width: 18px; height: 18px; }
+.quick-grid strong { font-size: 13px; font-weight: 600; }
+.quick-grid small { margin-top: 4px; color: #777d78; font-size: 9px; }
+
+.member-feature { padding-top: 0; }
+.member-feature > img { display: block; width: 100%; height: 214px; object-fit: cover; border-radius: 4px 4px 0 0; }
+.feature-copy { padding: 20px; background: #fff; border-radius: 0 0 4px 4px; }
+.feature-copy h2 { margin: 7px 0; font: 400 23px/1.25 "Songti SC", STSong, serif; }
+.feature-copy p { margin: 0; color: #657068; font-size: 11px; line-height: 1.75; }
+.feature-row { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 18px; }
+.feature-row strong { margin-right: 7px; font: 500 24px/1 Georgia, serif; color: var(--clay); }
+.feature-row s { color: #989c98; font-size: 10px; }
+.feature-row button, .sheet-content button, .product-hero-card button { min-height: 38px; padding: 0 18px; border: 0; border-radius: 2px; background: var(--forest); color: #fff; font-size: 12px; }
+
+.dark-section { margin: 0 20px; padding: 28px 24px; background: var(--forest-deep); color: #fff; }
+.live-card .eyebrow { margin-top: 38px; color: #a8b7aa; }
+.live-card h2 { margin: 8px 0; font: 400 27px/1.42 "Songti SC", STSong, serif; }
+.live-card p { color: rgba(255,255,255,.68); font-size: 11px; line-height: 1.8; }
+.live-card button { display: flex; align-items: center; gap: 8px; margin-top: 22px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font-size: 11px; }
+.live-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: .08em; }
+.live-badge > span { width: 7px; height: 7px; border-radius: 50%; background: #cf684d; box-shadow: 0 0 0 4px rgba(207,104,77,.18); }
+
+.origin-section { background: #fff; margin-top: 34px; }
+.origin-card { display: block; width: 100%; padding: 0; border: 0; background: var(--forest-deep); color: #fff; text-align: left; }
+.origin-card img { display: block; width: 100%; height: 225px; object-fit: cover; }
+.origin-copy { display: block; padding: 16px 18px 18px; }
+.origin-copy strong { display: block; font: 400 18px/1.3 "Songti SC", STSong, serif; }
+.origin-copy small { display: block; margin-top: 6px; color: rgba(255,255,255,.65); font-size: 9px; letter-spacing: .05em; }
+
+.collaboration-section { overflow: hidden; padding-right: 0; }
+.collaboration-section .section-heading { padding-right: 20px; }
+.collab-track { gap: 10px; padding-right: 20px; }
+.collab-card { display: flex; flex-direction: column; justify-content: flex-end; width: 238px; height: 156px; padding: 20px; text-align: left; border: 0; color: #fff; }
+.collab-card.clay { background: #8d5b42; }
+.collab-card.herb { background: #5d7058; }
+.collab-card span { font-size: 9px; letter-spacing: .12em; opacity: .72; }
+.collab-card strong { margin: 8px 0 5px; font: 400 17px/1.35 "Songti SC", STSong, serif; }
+.collab-card small { font-size: 9px; opacity: .72; }
+
+.tab-bar { position: absolute; z-index: 20; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, 1fr); height: 77px; padding: 8px 8px calc(var(--mobile-safe-area-height) + 3px); border-top: 1px solid rgba(19,35,28,.1); background: rgba(252,250,245,.97); }
+.tab-bar button { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; border: 0; background: transparent; color: #90978f; font-size: 10px; }
+.tab-bar svg { width: 20px; height: 20px; }
+.tab-bar button[data-active="true"] { color: var(--forest); font-weight: 700; }
+
+.sub-screen { min-height: 100%; padding: 76px 20px 110px; }
+.sub-screen > h1 { margin: 10px 0 12px; font: 400 34px/1.3 "Songti SC", STSong, serif; letter-spacing: .05em; }
+.intro { max-width: 320px; margin: 0 0 26px; color: #68736a; font-size: 12px; line-height: 1.85; }
+
+.shop-shell { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+.shop-header { position: absolute; z-index: 10; top: 0; right: 0; left: 0; display: flex; align-items: flex-end; justify-content: space-between; height: 112px; padding: 48px 17px 14px; border-bottom: 1px solid rgba(23,35,30,.09); background: rgba(255,255,255,.98); }
+.shop-header h1 { margin: 3px 0 0; font: 400 22px/1.2 "Songti SC", STSong, serif; letter-spacing: .08em; }
+.shop-header > button { display: flex; align-items: center; gap: 5px; padding: 7px 9px; border: 1px solid rgba(24,59,45,.16); border-radius: 20px; background: #f8f7f2; color: var(--forest); font-size: 9px; }
+.shop-header > button svg { width: 14px; height: 14px; }
+
+.category-rail { position: absolute; z-index: 4; top: 112px; bottom: 154px; left: 0; width: 100px; overflow: hidden; border-right: 1px solid rgba(23,35,30,.07); background: #f3f1eb; }
+.category-group { position: relative; }
+.category-primary { position: relative; width: 100%; min-height: 42px; padding: 0 10px; border: 0; background: transparent; color: #727972; font-size: 11px; text-align: center; }
+.category-primary[data-active="true"] { background: #fff; color: var(--forest); font-weight: 700; }
+.category-primary[data-active="true"]::before { position: absolute; top: 10px; bottom: 10px; left: 0; width: 3px; border-radius: 0 2px 2px 0; background: var(--forest); content: ""; }
+.shop-product-scroll { position: absolute; top: 112px; right: 0; bottom: 77px; left: 100px; background: #fff; }
+.shop-product-column { min-height: 100%; padding: 0 14px 132px; }
+.catalog-heading { position: relative; min-height: 104px; padding: 20px 0 14px; border-bottom: 1px solid rgba(23,35,30,.08); }
+.catalog-heading > span { color: var(--moss); font-size: 8px; font-weight: 700; letter-spacing: .18em; }
+.catalog-heading h2 { margin: 6px 0 4px; font: 400 21px/1.25 "Songti SC", STSong, serif; }
+.catalog-heading p { margin: 0; color: #8a908b; font-size: 9px; }
+.product-list { display: grid; }
+.catalog-product { position: relative; min-height: 136px; padding: 14px 0; border-bottom: 1px solid rgba(23,35,30,.08); }
+.catalog-product-main { display: grid; grid-template-columns: 96px minmax(0, 1fr); width: 100%; min-height: 108px; align-items: center; gap: 12px; padding: 0; border: 0; background: transparent; text-align: left; }
+.catalog-product-main > img { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; background: #f2ede4; }
+.catalog-product-copy { min-width: 0; padding-top: 1px; padding-right: 2px; }
+.catalog-product-copy h3 { display: -webkit-box; overflow: hidden; margin: 0 0 5px; font-size: 13px; font-weight: 650; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.catalog-product-copy p { overflow: hidden; margin: 0 0 4px; color: #777f79; font-size: 9px; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
+.catalog-product-copy small { display: block; color: #a0a49f; font-size: 8px; }
+.catalog-product-copy strong { display: block; margin-top: 10px; color: #202620; font: 600 17px/1 Georgia, serif; }
+.product-tag { display: inline-block; margin-bottom: 5px; padding: 2px 5px; border-radius: 8px; background: var(--forest); color: #fff; font-size: 7px; line-height: 1; }
+.add-product { position: absolute; right: 0; bottom: 17px; display: grid; width: 29px; height: 29px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: var(--forest); color: #fff; }
+.add-product svg { width: 17px; height: 17px; }
+
+.qiansui-detail { position: absolute; z-index: 40; inset: 0; overflow: hidden; background: var(--paper); }
+.device-screen:has(.qiansui-detail) .keyboard-dock { visibility: hidden; }
+.qiansui-scroll { position: absolute; inset: 0; background: var(--paper); }
+.qiansui-page { min-height: 100%; padding-bottom: 126px; background: var(--paper); }
+.qiansui-hero { position: relative; height: 61cqh; min-height: 515px; max-height: 590px; overflow: hidden; border-radius: 0 0 50% 50% / 0 0 22px 22px; background: #10241a; color: #f6f0e4; }
+.qiansui-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 47%; }
+.qiansui-hero-actions { position: absolute; z-index: 2; top: 53px; right: 21px; left: 21px; display: flex; justify-content: space-between; }
+.qiansui-hero-actions button { display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: rgba(8, 24, 16, .22); color: #fff; }
+.qiansui-hero-actions svg { width: 23px; height: 23px; }
+.qiansui-hero-copy { position: absolute; z-index: 2; top: 152px; left: 24px; width: 244px; text-shadow: 0 2px 12px rgba(0,0,0,.36); }
+.qiansui-hero-copy > span { display: block; margin-bottom: 18px; font-family: Georgia, serif; font-size: 9px; letter-spacing: .29em; }
+.qiansui-hero-copy h1 { margin: 0; font: 400 43px/1.1 "Songti SC", STSong, serif; letter-spacing: .12em; }
+.qiansui-hero-copy h2 { margin: 18px 0 0; font: 400 21px/1.35 "Songti SC", STSong, serif; letter-spacing: .12em; }
+.qiansui-hero-copy i, .qiansui-aroma i { display: block; width: 26px; height: 1px; margin: 24px 0 17px; background: rgba(246,240,228,.72); }
+.qiansui-hero-copy p { margin: 0; font: 400 14px/1.7 "Songti SC", STSong, serif; letter-spacing: .11em; }
+
+.qiansui-facts { display: grid; grid-template-columns: repeat(4, 1fr); min-height: 86px; align-items: center; padding: 12px 12px 9px; background: var(--paper); }
+.qiansui-facts > div { position: relative; min-width: 0; text-align: center; }
+.qiansui-facts > div + div { border-left: 1px solid rgba(24,59,45,.12); }
+.qiansui-facts span, .qiansui-facts strong { display: block; }
+.qiansui-facts span { margin-bottom: 5px; color: #8c948d; font-size: 7px; letter-spacing: .12em; }
+.qiansui-facts strong { color: var(--forest); font: 400 12px/1.35 "Songti SC", STSong, serif; white-space: nowrap; }
+
+.qiansui-kicker { display: block; color: #8b5540; font-size: 8px; font-weight: 700; letter-spacing: .2em; }
+.qiansui-aroma { display: grid; grid-template-columns: 1fr 128px; align-items: center; gap: 16px; min-height: 236px; padding: 28px 24px 34px; background: #f8f4eb; }
+.qiansui-aroma h2 { margin: 10px 0 0; color: var(--forest); font: 400 25px/1.35 "Songti SC", STSong, serif; }
+.qiansui-aroma i { margin: 18px 0 16px; background: var(--clay); }
+.qiansui-aroma p { margin: 0; color: #59655d; font: 400 12px/1.7 "Songti SC", STSong, serif; letter-spacing: .08em; }
+.qiansui-aroma img { width: 126px; height: 126px; border-radius: 50%; object-fit: cover; box-shadow: 0 14px 32px rgba(53,42,28,.11); }
+
+.qiansui-story { padding: 48px 28px 42px; background: var(--forest-deep); color: #f5efe4; }
+.qiansui-story .qiansui-kicker { color: #c78a6e; }
+.qiansui-story h2, .qiansui-species h2, .qiansui-tasting h2, .qiansui-features h2, .qiansui-leaf h2 { margin: 10px 0 16px; font: 400 29px/1.35 "Songti SC", STSong, serif; letter-spacing: .04em; }
+.qiansui-story > p, .qiansui-species p, .qiansui-tasting p, .qiansui-leaf p { margin: 0; color: rgba(245,239,228,.7); font-size: 11px; line-height: 1.9; }
+.qiansui-story blockquote { margin: 30px 0 0; padding: 16px 0 0 18px; border-left: 2px solid #a96a4e; color: #f4eadc; font: 400 15px/1.8 "Songti SC", STSong, serif; }
+
+.qiansui-species { display: grid; grid-template-columns: 1fr 132px; align-items: center; gap: 20px; padding: 42px 24px; background: var(--paper); }
+.qiansui-species h2 { color: var(--forest); font-size: 24px; }
+.qiansui-species p, .qiansui-leaf p { color: #687168; }
+.qiansui-species img { width: 132px; height: 184px; object-fit: cover; }
+
+.qiansui-tasting { background: #fffaf1; }
+.qiansui-tasting > img { display: block; width: 100%; height: 275px; object-fit: cover; object-position: center 44%; }
+.qiansui-tasting > div { padding: 32px 26px 40px; }
+.qiansui-tasting h2 { color: var(--forest); font-size: 27px; }
+.qiansui-tasting p { color: #667067; }
+
+.qiansui-features { padding: 43px 24px 46px; background: #e8e0d2; }
+.qiansui-features h2 { color: var(--forest); font-size: 27px; }
+.qiansui-features ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin: 24px 0 0; padding: 0; list-style: none; background: rgba(24,59,45,.12); }
+.qiansui-features li { display: flex; align-items: center; gap: 12px; min-height: 74px; padding: 12px; background: #f4eee3; }
+.qiansui-features li:last-child { grid-column: 1 / 3; }
+.qiansui-features li > strong { color: #a66a4e; font: 400 18px/1 Georgia, serif; }
+.qiansui-features li > span { color: var(--forest); font: 600 12px/1.45 "Songti SC", STSong, serif; }
+.qiansui-features li small { color: #828a82; font: 400 9px/1.4 "PingFang SC", sans-serif; }
+
+.qiansui-leaf { background: var(--paper); }
+.qiansui-leaf > img { display: block; width: 100%; height: 235px; object-fit: cover; }
+.qiansui-leaf > div { padding: 34px 26px 46px; }
+.qiansui-leaf h2 { color: var(--forest); font-size: 26px; }
+
+.qiansui-buybar { position: absolute; z-index: 6; right: 10px; bottom: calc(var(--device-safe-area-bottom, 34px) + 8px); left: 10px; display: grid; grid-template-columns: 1fr 52px 142px; min-height: 78px; align-items: center; gap: 9px; padding: 8px 9px 8px 18px; border: 1px solid rgba(24,59,45,.09); border-radius: 28px; background: rgba(255,255,255,.96); box-shadow: 0 12px 38px rgba(24,36,29,.16); }
+.qiansui-buybar small, .qiansui-buybar strong { display: block; }
+.qiansui-buybar small { color: #636d65; font: 400 11px/1.2 "Songti SC", STSong, serif; }
+.qiansui-buybar strong { margin-top: 3px; color: var(--forest); font: 500 27px/1 Georgia, serif; }
+.qiansui-cart-icon { display: grid; width: 48px; height: 48px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: #efeee8; color: var(--forest); }
+.qiansui-cart-icon svg { width: 24px; height: 24px; }
+.qiansui-add { height: 55px; border: 0; border-radius: 28px; background: var(--forest); color: #fff; font: 400 16px/1 "Songti SC", STSong, serif; letter-spacing: .08em; }
+
+.shop-cart-bar { position: absolute; z-index: 24; right: 12px; bottom: 88px; left: 12px; display: grid; grid-template-columns: 1fr 96px; height: 66px; overflow: hidden; border: 1px solid rgba(24,59,45,.12); border-radius: 34px; background: rgba(255,255,255,.98); box-shadow: 0 10px 30px rgba(13,43,33,.17); }
+.cart-summary { display: flex; align-items: center; gap: 11px; min-width: 0; padding: 0 14px; border: 0; background: transparent; text-align: left; }
+.cart-summary > span:last-child { min-width: 0; }
+.cart-summary strong, .cart-summary small { display: block; }
+.cart-summary strong { color: var(--forest); font: 600 20px/1.15 Georgia, serif; }
+.cart-summary small { overflow: hidden; margin-top: 3px; color: #8a908b; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.cart-icon { position: relative; display: grid; flex: 0 0 38px; width: 38px; height: 38px; place-items: center; border-radius: 50%; background: #e6ebe3; color: var(--forest); }
+.cart-icon svg { width: 20px; height: 20px; }
+.cart-icon b { position: absolute; top: -4px; right: -3px; display: grid; min-width: 17px; height: 17px; place-items: center; padding: 0 4px; border-radius: 9px; background: var(--clay); color: #fff; font-size: 8px; }
+.cart-checkout { border: 0; background: var(--forest); color: #fff; font-size: 13px; font-weight: 650; }
+.shop-cart-bar[data-empty="true"] .cart-checkout { background: #aeb3ae; }
+.shop-shell[data-cart-open="true"] .shop-cart-bar { visibility: hidden; }
+.mobile-app-viewport[data-keyboard-visible="false"]:has(.shop-shell[data-cart-open="true"]) ~ .keyboard-dock { visibility: hidden; }
+
+.cart-sheet-content { display: flex; min-height: 0; flex-direction: column; padding-bottom: 10px; }
+.cart-sheet-list { max-height: 310px; overflow-y: auto; overscroll-behavior: contain; }
+.cart-sheet-item { display: grid; grid-template-columns: 66px minmax(0, 1fr) 92px; min-height: 98px; gap: 10px; padding: 13px 0; border-bottom: 1px solid var(--hairline); }
+.cart-sheet-item > img { display: block; width: 66px; height: 66px; align-self: center; border-radius: 50%; background: #f2ede4; object-fit: cover; }
+.cart-sheet-product { min-width: 0; padding-top: 2px; }
+.cart-sheet-product h3 { display: -webkit-box; overflow: hidden; margin: 0 0 5px; font-size: 13px; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.cart-sheet-product small { display: block; color: #929892; font-size: 9px; }
+.cart-sheet-product strong { display: block; margin-top: 8px; color: var(--forest); font: 600 17px/1 Georgia, serif; }
+.cart-sheet-actions { display: flex; align-items: flex-end; flex-direction: column; justify-content: space-between; padding: 1px 0 4px; }
+.cart-sheet-actions .cart-remove { display: grid; width: 36px; height: 36px; place-items: center; margin: 0; padding: 0; border: 0; border-radius: 50%; background: #f1f3ef; color: #7d867f; }
+.cart-remove svg { width: 19px; height: 19px; }
+.cart-quantity { display: grid; grid-template-columns: 24px 26px 24px; height: 24px; align-items: center; border: 1px solid rgba(24,59,45,.16); border-radius: 13px; background: #f7f7f3; }
+.cart-quantity button { display: grid; width: 24px; height: 22px; place-items: center; padding: 0; border: 0; background: transparent; color: var(--forest); }
+.cart-quantity button svg { width: 13px; height: 13px; }
+.cart-quantity span { font: 600 11px/1 Georgia, serif; text-align: center; }
+.cart-empty { display: grid; min-height: 180px; place-items: center; align-content: center; gap: 10px; color: #899189; }
+.cart-empty svg { width: 28px; height: 28px; }
+.cart-empty p { margin: 0; font-size: 11px; }
+.cart-sheet-footer { display: grid; grid-template-columns: 1fr 112px; min-height: 78px; align-items: center; gap: 12px; padding: 14px 0 8px; border-top: 1px solid var(--hairline); }
+.cart-sheet-footer > div { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; align-items: end; column-gap: 8px; }
+.cart-sheet-footer span { color: #737b74; font-size: 10px; }
+.cart-sheet-footer strong { color: var(--forest); font: 600 22px/1 Georgia, serif; }
+.cart-sheet-footer small { grid-column: 1 / 3; margin-top: 4px; color: #9a9f9a; font-size: 8px; }
+.cart-sheet-footer > button { height: 46px; border: 0; border-radius: 24px; background: var(--forest); color: #fff; font-size: 13px; font-weight: 650; }
+.cart-sheet-footer > button:disabled { background: #aeb3ae; }
+
+.community-screen { background: #e9e4d9; }
+.live-hero { position: relative; min-height: 405px; overflow: hidden; background: var(--forest-deep); color: #fff; }
+.live-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .68; }
+.live-hero > .live-badge { position: absolute; top: 18px; left: 18px; }
+.live-hero > div:not(.live-badge) { position: absolute; left: 20px; right: 20px; bottom: 72px; }
+.live-hero > div strong { font-size: 11px; letter-spacing: .08em; }
+.live-hero h2 { margin: 8px 0 0; font: 400 23px/1.45 "Songti SC", STSong, serif; }
+.live-hero > button { position: absolute; left: 20px; bottom: 20px; display: flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid rgba(255,255,255,.5); background: rgba(10,35,26,.7); color: #fff; font-size: 10px; }
+.community-list { margin-top: 30px; }
+.community-list > button { display: grid; grid-template-columns: 38px 1fr 15px; align-items: center; width: 100%; gap: 12px; padding: 16px 0; border: 0; border-top: 1px solid var(--hairline); background: transparent; text-align: left; }
+.community-list > button > svg:first-child { width: 20px; height: 20px; color: var(--forest); }
+.community-list strong, .community-list small { display: block; }
+.community-list strong { font-size: 13px; }
+.community-list small { margin-top: 5px; color: #737b74; font-size: 9px; }
+
+.profile-head { display: flex; align-items: center; gap: 15px; margin: 22px 0 28px; }
+.avatar { display: grid; width: 62px; height: 62px; place-items: center; border-radius: 50%; background: var(--forest); color: #fff; font: 400 27px/1 "Songti SC", STSong, serif; }
+.profile-head h1 { margin: 0 0 4px; font: 400 22px/1.3 "Songti SC", STSong, serif; }
+.profile-head p { margin: 0; color: #737b74; font-size: 10px; }
+.points-card { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; padding: 22px; background: var(--forest-deep); color: #fff; }
+.points-card span { color: rgba(255,255,255,.65); font-size: 10px; letter-spacing: .08em; }
+.points-card strong { grid-row: 2; margin-top: 6px; font: 500 35px/1 Georgia, serif; }
+.points-card button { grid-row: 1 / 3; align-self: center; padding: 8px 14px; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font-size: 10px; }
+.order-strip { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 12px; background: #fff; }
+.order-strip button { display: flex; flex-direction: column; align-items: center; padding: 18px 4px; border: 0; background: transparent; }
+.order-strip strong { font: 500 20px/1 Georgia, serif; }
+.order-strip span { margin-top: 8px; color: #697069; font-size: 10px; }
+.menu-list { margin-top: 24px; background: #fff; }
+.menu-list button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; border: 0; border-bottom: 1px solid var(--hairline); background: transparent; font-size: 12px; }
+
+.sheet-content { padding: 4px 0 8px; }
+.sheet-content p { margin: 0 0 20px; color: #59635c; font-size: 13px; line-height: 1.8; }
+.sheet-content button { width: 100%; }
+.bottom-sheet:has(.cart-sheet-content) .sheet-content { overflow: hidden; padding: 0 22px 28px 28px; }
+.bottom-sheet:has(.cart-sheet-content) .cart-sheet-actions .cart-remove { width: 36px; min-width: 36px; height: 36px; min-height: 36px; box-sizing: border-box; padding: 0; border-radius: 50%; }
+.bottom-sheet:has(.cart-sheet-content) .cart-quantity { grid-template-columns: 29px 32px 29px; width: 92px; height: 30px; box-sizing: border-box; overflow: hidden; }
+.bottom-sheet:has(.cart-sheet-content) .cart-quantity button { width: 29px; min-width: 29px; height: 28px; min-height: 0; box-sizing: border-box; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--forest); }
+.bottom-sheet:has(.cart-sheet-content) .cart-quantity span { min-width: 32px; line-height: 28px; }
+
+@media (max-height: 760px) {
+  .hero-copy { top: 110px; }
+}

@@ -1,0 +1,95 @@
+<view class="detail-page">
+  <scroll-view class="detail-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="detail-content">
+      <view class="hero">
+        <image class="hero-image" src="/assets/images/qiansuihong/hero.png" mode="aspectFill" />
+        <view class="hero-actions">
+          <button bindtap="goBack">返回</button>
+          <button open-type="share">分享</button>
+        </view>
+        <view class="hero-copy">
+          <text class="hero-en">WILD TREE RED TEA</text>
+          <text class="hero-title serif">千岁红</text>
+          <text class="hero-subtitle serif">千年野生古树红茶</text>
+          <view class="hero-rule"></view>
+          <text class="hero-quote serif">喝到的，仿佛是时间的味道</text>
+        </view>
+      </view>
+
+      <view class="facts">
+        <view><text>产地</text><text class="serif">临沧</text></view>
+        <view><text>品种</text><text class="serif">大理种</text></view>
+        <view><text>海拔</text><text class="serif">约 2000m</text></view>
+        <view><text>树龄</text><text class="serif">1000 多年</text></view>
+      </view>
+
+      <view class="aroma section-paper">
+        <view class="aroma-copy">
+          <text class="kicker">AROMA · 山野气韵</text>
+          <text class="section-title serif">野蜜香贯穿始末</text>
+          <view class="clay-rule"></view>
+          <text class="section-copy serif">玫瑰 · 番石榴 · 花果香</text>
+        </view>
+        <image src="/assets/images/qiansuihong/dry-tea-plate.png" mode="aspectFill" />
+      </view>
+
+      <view class="origin section-dark">
+        <text class="kicker">01 · WILD ORIGIN</text>
+        <text class="section-title serif">原始森林里的
+千年野性</text>
+        <text class="body-copy">在人迹罕至的云南高山密林中，野生大茶树自然繁衍成万亩茶林。山谷、清溪与多样生物共生，让每一片叶子都带着森林山野的气韵。</text>
+        <text class="quote serif">“野”，是没有边界的想象，也是自然本身的力量。</text>
+      </view>
+
+      <view class="species section-paper split-section">
+        <view>
+          <text class="kicker">02 · CAMELLIA TALIENSIS</text>
+          <text class="section-title serif">大理种，未经驯化的古木兰</text>
+          <text class="body-copy dark-copy">嫩芽与嫩叶没有绒毛，干茶乌黑油亮、叶质如革，果胶丰厚。生长十几年，才及普通茶树两三年的高度。</text>
+        </view>
+        <image src="/assets/images/qiansuihong/dry-tea.jpg" mode="aspectFill" />
+      </view>
+
+      <view class="tasting section-paper">
+        <image class="wide-image" src="/assets/images/qiansuihong/tea-liquor.jpg" mode="aspectFill" />
+        <view class="tasting-copy">
+          <text class="kicker">03 · A WORLD IN A CUP</text>
+          <text class="section-title serif">鲜爽、甘甜、柔润</text>
+          <text class="body-copy dark-copy">更高的茶黄素带来明亮浅金汤色。玫瑰、番石榴与野蜜香落入茶汤，十泡之后仍不落茶色，鲜甜依旧。</text>
+        </view>
+      </view>
+
+      <view class="features">
+        <text class="kicker">FIVE CHARACTERISTICS</text>
+        <text class="section-title serif">一杯茶里的千年积淀</text>
+        <view class="feature-grid">
+          <view><text>01</text><text class="serif">千年树龄
+产量稀少</text></view>
+          <view><text>02</text><text class="serif">野韵十足
+山野气深</text></view>
+          <view><text>03</text><text class="serif">甜润度高
+甘甜厚重</text></view>
+          <view><text>04</text><text class="serif">十分耐泡
+十泡仍甜</text></view>
+          <view class="feature-last"><text>05</text><text class="serif">回甘生津
+喉韵绵长</text></view>
+        </view>
+      </view>
+
+      <view class="leaf section-paper">
+        <image class="wide-image" src="/assets/images/qiansuihong/leaf-base.jpg" mode="aspectFill" />
+        <view class="leaf-copy">
+          <text class="kicker">04 · LEAF BASE</text>
+          <text class="section-title serif">明亮油润，柔韧有光</text>
+          <text class="body-copy dark-copy">茶气劲扬饱满，释放缓慢而持久。古乔木独特的茶韵，让余香与回甘久久停留。</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="buybar">
+    <view><text class="buy-size serif">100g / 罐</text><text class="buy-price">¥698</text></view>
+    <button class="buy-cart" bindtap="addToCart"><image src="/assets/icons/shop-active.png" mode="aspectFit" /></button>
+    <button class="buy-action serif" bindtap="addToCart">加入茶席</button>
+  </view>
+</view>

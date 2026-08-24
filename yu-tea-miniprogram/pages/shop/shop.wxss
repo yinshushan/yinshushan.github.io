@@ -1,0 +1,63 @@
+.shop-page { position: relative; height: 100vh; overflow: hidden; background: #fff; }
+.shop-header { position: absolute; z-index: 10; top: 0; right: 0; left: 0; display: flex; align-items: flex-end; justify-content: space-between; height: 128rpx; padding: 24rpx 34rpx 20rpx; box-sizing: border-box; border-bottom: 1rpx solid rgba(23,35,30,.09); background: rgba(255,255,255,.98); }
+.shop-title { display: block; margin-top: 6rpx; font-size: 44rpx; line-height: 1.2; letter-spacing: 3rpx; }
+.shop-header > button { margin: 0; padding: 12rpx 20rpx; border: 1rpx solid rgba(24,59,45,.16); border-radius: 36rpx; background: #f8f7f2; color: #183b2d; font-size: 18rpx; line-height: 1.4; }
+.category-rail { position: absolute; z-index: 4; top: 128rpx; bottom: 154rpx; left: 0; width: 200rpx; overflow: hidden; border-right: 1rpx solid rgba(23,35,30,.07); background: #f3f1eb; }
+.category-primary { position: relative; width: 100%; min-height: 82rpx; margin: 0; padding: 0 18rpx; border-radius: 0; background: transparent; color: #727972; font-size: 22rpx; line-height: 82rpx; text-align: center; }
+.category-primary.active { background: #fff; color: #183b2d; font-weight: 700; }
+.category-primary.active::before { position: absolute; top: 20rpx; bottom: 20rpx; left: 0; width: 6rpx; border-radius: 0 4rpx 4rpx 0; background: #183b2d; content: ""; }
+.product-scroll { position: absolute; top: 128rpx; right: 0; bottom: 0; left: 200rpx; background: #fff; }
+.product-column { min-height: 100%; padding: 0 28rpx 180rpx; box-sizing: border-box; }
+.catalog-heading { min-height: 206rpx; padding: 40rpx 0 28rpx; box-sizing: border-box; border-bottom: 1rpx solid rgba(23,35,30,.08); }
+.catalog-category, .catalog-title, .catalog-note { display: block; }
+.catalog-category { color: #6e846f; font-size: 16rpx; font-weight: 700; letter-spacing: 4rpx; }
+.catalog-title { margin: 12rpx 0 8rpx; font-size: 42rpx; line-height: 1.25; }
+.catalog-note { color: #8a908b; font-size: 18rpx; }
+.catalog-product { position: relative; display: grid; grid-template-columns: 192rpx minmax(0,1fr); min-height: 272rpx; gap: 24rpx; padding: 28rpx 0; box-sizing: border-box; border-bottom: 1rpx solid rgba(23,35,30,.08); }
+.catalog-product > image { display: block; align-self: center; width: 192rpx; height: 192rpx; border-radius: 50%; background: #f2ede4; }
+.product-copy { min-width: 0; padding-top: 2rpx; }
+.product-tag { display: inline-block; margin-bottom: 10rpx; padding: 4rpx 10rpx; border-radius: 16rpx; background: #183b2d; color: #fff; font-size: 14rpx; line-height: 1; }
+.product-name, .product-note, .product-size, .product-price { display: block; }
+.product-name { display: -webkit-box; overflow: hidden; margin-bottom: 10rpx; font-size: 26rpx; font-weight: 650; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.product-note { overflow: hidden; margin-bottom: 8rpx; color: #777f79; font-size: 18rpx; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
+.product-size { color: #a0a49f; font-size: 16rpx; }
+.product-price { margin-top: 20rpx; color: #202620; font: 600 34rpx/1 Georgia, serif; }
+.add-product { position: absolute; right: 0; bottom: 34rpx; display: flex; align-items: center; justify-content: center; width: 58rpx; height: 58rpx; margin: 0; padding: 0; border-radius: 50%; background: #183b2d; }
+.add-product image { width: 30rpx; height: 30rpx; filter: brightness(0) invert(1); }
+.cart-bar { position: absolute; z-index: 24; right: 24rpx; bottom: 20rpx; left: 24rpx; display: grid; grid-template-columns: 1fr 192rpx; height: 132rpx; overflow: hidden; border: 1rpx solid rgba(24,59,45,.12); border-radius: 68rpx; background: rgba(255,255,255,.98); box-shadow: 0 20rpx 60rpx rgba(13,43,33,.17); }
+.cart-summary { display: flex; align-items: center; gap: 22rpx; min-width: 0; margin: 0; padding: 0 28rpx; border-radius: 0; background: transparent; text-align: left; line-height: 1.2; }
+.cart-icon { position: relative; display: flex; align-items: center; justify-content: center; flex: 0 0 76rpx; width: 76rpx; height: 76rpx; border-radius: 50%; background: #e6ebe3; }
+.cart-icon image { width: 40rpx; height: 40rpx; }
+.cart-icon text { position: absolute; top: -8rpx; right: -6rpx; min-width: 34rpx; height: 34rpx; padding: 0 8rpx; box-sizing: border-box; border-radius: 18rpx; background: #b36e4b; color: #fff; font-size: 16rpx; line-height: 34rpx; text-align: center; }
+.cart-total, .cart-note { display: block; }
+.cart-total { color: #183b2d; font: 600 40rpx/1.15 Georgia, serif; }
+.cart-note { margin-top: 6rpx; color: #8a908b; font-size: 18rpx; }
+.checkout { margin: 0; border-radius: 0; background: #183b2d; color: #fff; font-size: 26rpx; font-weight: 650; line-height: 132rpx; }
+.cart-bar.empty .checkout { background: #aeb3ae; }
+.cart-mask { position: absolute; z-index: 80; top: 0; right: 0; bottom: 0; left: 0; background: rgba(16,24,20,.44); }
+.cart-drawer { position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; max-height: 66vh; min-height: 500rpx; padding: 18rpx 40rpx calc(36rpx + env(safe-area-inset-bottom)); box-sizing: border-box; border-radius: 36rpx 36rpx 0 0; background: #fff; box-shadow: 0 -18rpx 64rpx rgba(13,43,33,.18); }
+.cart-handle { flex: 0 0 auto; width: 86rpx; height: 8rpx; margin: 0 auto 22rpx; border-radius: 8rpx; background: #d4d7d2; }
+.cart-drawer-header { flex: 0 0 auto; padding: 0 4rpx 20rpx; border-bottom: 1rpx solid rgba(23,35,30,.08); }
+.cart-drawer-title, .cart-drawer-description { display: block; }
+.cart-drawer-title { color: #17231e; font-size: 34rpx; font-weight: 650; line-height: 1.25; }
+.cart-drawer-description { margin-top: 8rpx; color: #7b827d; font-size: 20rpx; line-height: 1.4; }
+.cart-drawer-list { flex: 1 1 auto; min-height: 0; max-height: 540rpx; }
+.cart-drawer-item { display: grid; grid-template-columns: 116rpx minmax(0,1fr) 156rpx; align-items: center; gap: 20rpx; min-height: 154rpx; padding: 20rpx 4rpx; box-sizing: border-box; border-bottom: 1rpx solid rgba(23,35,30,.08); }
+.cart-product-image { display: block; width: 116rpx; height: 116rpx; border-radius: 50%; background: #f2ede4; }
+.cart-product-copy { min-width: 0; }
+.cart-product-name, .cart-product-size, .cart-product-price { display: block; }
+.cart-product-name { overflow: hidden; color: #1f2823; font-size: 23rpx; font-weight: 650; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.cart-product-size { margin-top: 7rpx; color: #9a9f9b; font-size: 17rpx; }
+.cart-product-price { margin-top: 13rpx; color: #183b2d; font: 600 28rpx/1 Georgia, serif; }
+.cart-drawer-actions { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; align-self: stretch; padding: 6rpx 0; }
+.cart-delete { display: flex; align-items: center; justify-content: center; width: 64rpx; min-width: 64rpx; height: 64rpx; min-height: 64rpx; margin: 0; padding: 0; box-sizing: border-box; border-radius: 50%; background: #f2f3ef; }
+.cart-delete image { width: 34rpx; height: 34rpx; }
+.cart-quantity { display: grid; grid-template-columns: 50rpx 54rpx 50rpx; align-items: center; width: 156rpx; height: 52rpx; box-sizing: border-box; overflow: hidden; border: 1rpx solid rgba(24,59,45,.14); border-radius: 28rpx; background: #f7f7f3; }
+.cart-quantity button { display: flex; align-items: center; justify-content: center; width: 50rpx; min-width: 50rpx; height: 50rpx; min-height: 0; margin: 0; padding: 0; box-sizing: border-box; border-radius: 0; background: transparent; }
+.cart-quantity image { width: 22rpx; height: 22rpx; }
+.cart-quantity text { color: #183b2d; font-size: 20rpx; font-weight: 650; text-align: center; }
+.cart-drawer-footer { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 24rpx; padding: 26rpx 4rpx 10rpx; border-top: 1rpx solid rgba(23,35,30,.08); }
+.cart-drawer-total, .cart-drawer-count { display: block; }
+.cart-drawer-total { color: #183b2d; font: 600 40rpx/1 Georgia, serif; }
+.cart-drawer-count { margin-top: 7rpx; color: #8a908b; font-size: 17rpx; }
+.cart-drawer-footer > button { min-width: 210rpx; height: 88rpx; margin: 0; padding: 0 36rpx; border-radius: 46rpx; background: #183b2d; color: #fff; font-size: 26rpx; font-weight: 650; line-height: 88rpx; }

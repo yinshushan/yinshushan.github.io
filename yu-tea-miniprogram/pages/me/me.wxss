@@ -1,0 +1,17 @@
+.me-page { min-height: 100vh; padding: 48rpx 40rpx 90rpx; box-sizing: border-box; }
+.profile { display: flex; align-items: center; gap: 30rpx; margin: 42rpx 0 54rpx; }
+.avatar { display: flex; align-items: center; justify-content: center; width: 124rpx; height: 124rpx; border-radius: 50%; background: #183b2d; color: #fff; font-size: 54rpx; }
+.profile-title, .profile-note { display: block; }
+.profile-title { margin-bottom: 8rpx; font-size: 44rpx; }
+.profile-note { color: #737b74; font-size: 20rpx; }
+.points-card { display: flex; align-items: center; justify-content: space-between; padding: 44rpx; background: #0d2b21; color: #fff; }
+.points-card view text { display: block; }
+.points-card view text:first-child { color: rgba(255,255,255,.65); font-size: 20rpx; letter-spacing: 2rpx; }
+.points-card view text:last-child { margin-top: 12rpx; font: 500 70rpx/1 Georgia, serif; }
+.points-card button { margin: 0; padding: 14rpx 28rpx; border: 1rpx solid rgba(255,255,255,.35); border-radius: 0; background: transparent; color: #fff; font-size: 20rpx; line-height: 1.4; }
+.order-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 24rpx; background: #fff; }
+.order-strip button { display: flex; align-items: center; flex-direction: column; padding: 34rpx 8rpx; border-radius: 0; background: transparent; line-height: 1.4; }
+.order-strip button text:first-child { font: 500 40rpx/1 Georgia, serif; }
+.order-strip button text:last-child { margin-top: 14rpx; color: #697069; font-size: 20rpx; }
+.menu-list { margin-top: 48rpx; background: #fff; }
+.menu-list button { display: flex; align-items: center; justify-content: space-between; min-height: 104rpx; margin: 0; padding: 0 32rpx; border-bottom: 1rpx solid rgba(23,35,30,.13); border-radius: 0; background: transparent; font-size: 24rpx; line-height: 1.4; }

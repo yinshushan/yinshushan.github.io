@@ -1,0 +1,73 @@
+<view class="home-page">
+  <view class="hero">
+    <image class="hero-image" src="/assets/images/tea-mountain-hero.png" mode="aspectFill" />
+    <view class="hero-top">
+      <text>YU TEA · 予茶</text>
+    </view>
+    <view class="hero-copy">
+      <text class="hero-mark">予</text>
+      <text class="hero-idea">数字化转型的新茶道</text>
+      <view class="hero-title"><text>一叶连山海</text><text>一席聚知己</text></view>
+      <text class="hero-en">A NEW RITUAL FOR TEA LIFE</text>
+    </view>
+    <view class="gateway">
+      <button bindtap="joinMember">
+        <text class="gateway-en">MEMBERSHIP</text>
+        <text class="gateway-title serif">入会领茶礼</text>
+        <text class="gateway-note">会员价 · 茶分 · 专属券</text>
+      </button>
+      <view class="gateway-line"></view>
+      <button bindtap="goShop">
+        <text class="gateway-en">WORLDWIDE</text>
+        <text class="gateway-title serif">选茶寄世界</text>
+        <text class="gateway-note">跨境直邮 · 溯源码</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="section benefits">
+    <view class="section-heading"><view><text class="eyebrow">MEMBER BENEFITS</text><text class="title">懂你的每一次茶叙</text></view></view>
+    <view class="quick-grid">
+      <button wx:for="{{quickActions}}" wx:key="label" data-name="{{item.label}}" bindtap="showFeature">
+        <text class="quick-mark serif">{{item.mark}}</text>
+        <view><text class="quick-title">{{item.label}}</text><text class="quick-note">{{item.note}}</text></view>
+      </button>
+    </view>
+  </view>
+
+  <view class="section member-feature">
+    <image src="/assets/images/tea-product-stilllife.png" mode="aspectFill" />
+    <view class="feature-copy">
+      <text class="eyebrow">PRIVATE OFFER · 会员专享</text>
+      <text class="feature-title serif">山野白茶拼团</text>
+      <text class="feature-note">三人成团，和同频的人共享一席山野清甜。</text>
+      <view class="feature-row"><view><text class="price">¥168</text><text class="original">¥239</text></view><button class="primary-button" data-name="拼团活动" bindtap="showFeature">立即成团</button></view>
+    </view>
+  </view>
+
+  <view class="live-card">
+    <text class="live-badge">● LIVE · 今晚 20:00</text>
+    <text class="eyebrow">TEA SALON</text>
+    <view class="live-title serif"><text>跟着制茶师</text><text>云游景迈山</text></view>
+    <text class="live-note">直播、公众号与社群同步开席，边听山场故事，边选一款懂你的茶。</text>
+    <button bindtap="goCommunity">预约茶会</button>
+  </view>
+
+  <view class="section origin">
+    <view class="section-heading"><view><text class="eyebrow">ORIGIN & CULTURE</text><text class="title">一片叶子的来处</text></view><button data-name="产品溯源" bindtap="showFeature">查看溯源 ›</button></view>
+    <button class="origin-card" data-name="古茶林故事" bindtap="showFeature">
+      <image src="/assets/images/tea-origin-culture.png" mode="aspectFill" />
+      <view><text class="origin-title serif">古茶林共生的秘密</text><text class="origin-note">海拔 1,680m · 采摘批次 YM260318</text></view>
+    </button>
+  </view>
+
+  <view class="section collab">
+    <view class="section-heading"><view><text class="eyebrow">TEA LIFE COLLAB</text><text class="title">茶生活，不止一杯茶</text></view></view>
+    <scroll-view class="collab-scroll" scroll-x enhanced show-scrollbar="false">
+      <view class="collab-row">
+        <button class="collab-card clay" data-name="器物联名" bindtap="showFeature"><text>器物联名</text><text class="serif">一只为岩茶而生的杯</text><text>予茶 × 青岚窑</text></button>
+        <button class="collab-card herb" data-name="轻养茶食" bindtap="showFeature"><text>轻养茶食</text><text class="serif">低糖桂花茶点礼盒</text><text>予茶 × 山食记</text></button>
+      </view>
+    </scroll-view>
+  </view>
+</view>
