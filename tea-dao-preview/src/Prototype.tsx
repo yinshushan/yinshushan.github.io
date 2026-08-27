@@ -180,7 +180,7 @@ function HomeScreen({ onTab, onMember, onAction }: { onTab: (tab: TabId) => void
             <button className="mini-capsule" type="button" aria-label="小程序菜单与分享" onClick={() => onAction("分享予茶") }><DotsHorizontalIcon /><span /><CircleIcon /></button>
           </div>
           <div className="hero-copy">
-            <span className="hero-mark">予</span>
+            <img className="hero-mark" src="/assets/brand/yu-mark-white.png" alt="予茶品牌标识" />
             <p>数字化转型的新茶道</p>
             <h1>一叶连山海<br />一席聚知己</h1>
             <span className="hero-en">A NEW RITUAL FOR TEA LIFE</span>

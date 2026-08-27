@@ -12,6 +12,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Yu Tea Product Decisions
 
+- The official Yu Tea brand mark is the user-supplied calligraphic `予 / YU` lockup. Never substitute a font glyph or redraw the Chinese `予`; use `public/assets/brand/yu-logo-source.jpg` as source truth and `public/assets/brand/yu-mark-white.png` on dark or photographic surfaces.
 - Keep the home hero as one uninterrupted tea-mountain image. The two gateway actions float inside a downward-darkening black gradient that reaches the hero bottom; lower content begins immediately after the hero with no exposed image strip.
 - Keep the home hero free of the former `云南 · 景迈山` and `2026 春茶` metadata labels.
 - The tea-selection screen uses one fixed left rail containing only the first-level categories: `白茶 / 普洱生茶 / 普洱熟茶 / 红茶 / 花茶 / 绿茶 / 茶膏 / 礼盒`. Do not show `全部` or secondary category entries in that rail.

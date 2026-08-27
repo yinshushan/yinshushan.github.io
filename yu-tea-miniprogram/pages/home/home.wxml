@@ -5,7 +5,7 @@
       <text>YU TEA · 予茶</text>
     </view>
     <view class="hero-copy">
-      <text class="hero-mark">予</text>
+      <image class="hero-mark" src="/assets/images/brand/yu-mark-white.png" mode="widthFix" />
       <text class="hero-idea">数字化转型的新茶道</text>
       <view class="hero-title"><text>一叶连山海</text><text>一席聚知己</text></view>
       <text class="hero-en">A NEW RITUAL FOR TEA LIFE</text>
